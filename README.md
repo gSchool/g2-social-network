@@ -2,17 +2,20 @@
 
 # g2-social-network
 
+##Background
+
 The g2 Social Network application provides networking capabilities with between users.  The App is built on Rails 4.
 
 ##Important Links
 
++ [Tracker](https://www.pivotaltracker.com/n/projects/1079706 "Tracker")
 
-Staging: http://g2-social-network-staging.herokuapp.com/
++ [Staging](http://g2-social-network-staging.herokuapp.com/ "Staging")
 
-Github: https://github.com/gSchool/g2-social-network
++ [Github](https://github.com/gSchool/g2-social-network "Github")
 
 
-##Development
+##Setup
 
 
 To get this application running locally, you should be able to simply clone this repository and run the following:
