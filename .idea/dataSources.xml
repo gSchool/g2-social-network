@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="124259323">
+    <data-source source="LOCAL" name="Rails g2-social-network: development" uuid="3663b652-f2f2-4013-86c8-9d2ce32a779a">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:g2-social-network_development</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails g2-social-network: test" uuid="449a8deb-0f62-4f76-bcbf-b1d3ac90b663">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:g2-social-network_test</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails g2-social-network: production" uuid="d2cd573a-7bc6-45d3-9edb-6d4e3cecc94e">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:g2-social-network_production</jdbc-url>
+      <user-name>g2-social-network</user-name>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddfeddf98df87dff9dfe5dfe9dfe3dfebdfe6df87dfe4dfefdffedffddfe5dff8dfe1dff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
