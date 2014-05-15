@@ -24,4 +24,5 @@ feature 'User can create an account' do
     click_on 'Create an Account'
     expect(page).to have_content "Password confirmation doesn't match Password"
   end
+
 end
