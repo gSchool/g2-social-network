@@ -53,3 +53,12 @@ header {
     text-decoration: none;
     list-style-type: none;
 }
+#user_first_and_last {
+    display: inline-block;
+}
+#add_or_unfriend_button {
+    display: inline-block;
+}
+#profile_picture_thumbnail {
+    display: inline-block;
+}

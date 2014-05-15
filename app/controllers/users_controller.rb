@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @current_user = User.find session[:id]
   end
 
   def new
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
+      session[:id] = @user.id
       redirect_to '/users'
     else
       @user
