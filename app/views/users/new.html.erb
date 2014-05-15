@@ -1,8 +1,12 @@
 <h2>Bradtke Book</h2>
 
-<% if @user.errors %>
-  <% @user.errors.full_messages.each do |message| %>
-    <%= message %>
+<% if @user.errors.present? %>
+  <%if @user.errors[:password_confirmation].present? %>
+      <%= @user.errors[:password_confirmation].first %>
+  <% else %>
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
   <% end %>
 <% end %>
 

@@ -25,5 +25,11 @@ describe User do
       @user.email = " "
       expect(@user).to_not be_valid
     end
+
+    it "password can't be blank" do
+      @user.password = ""
+      @user.password_digest = ""
+      expect(@user).to_not be_valid
+    end
   end
 end
