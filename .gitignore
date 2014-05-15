@@ -16,10 +16,4 @@
 /tmp
 .rspec
 .env
-.idea/.generators
-.idea/.name
-.idea/.rakeTasks
-.idea/dataSources.ids
-.idea/workspace.xml
-.idea/g2-social-network.iml
-.idea/
+.idea
