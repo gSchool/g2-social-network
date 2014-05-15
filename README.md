@@ -12,17 +12,15 @@ The g2 Social Network application provides networking capabilities with between 
 
 + [Staging](http://g2-social-network-staging.herokuapp.com/ "Staging")
 
-+ [Github](https://github.com/gSchool/g2-social-network "Github")
-
-
 ##Setup
 
 
 To get this application running locally, you should be able to simply clone this repository and run the following:
 
-     cd g2-social_network
-     bundle install
-     rake db:create
-     rake db:migrate
-     rails s
++ `cd g2-social_network`
++ `bundle install`
++ `rake db:create`
++ `rake db:migrate`
++ `rake spec`
++ `rails s`
 
