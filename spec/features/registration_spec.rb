@@ -10,7 +10,7 @@ feature 'User can create an account' do
     fill_in 'Password', with: 'hello123'
     fill_in 'Password confirmation', with: 'hello123'
     click_on 'Create an Account'
-    expect(page).to have_content "Welcome to Bradtke's Book"
+    expect(page).to have_content "Bradtke's Book"
   end
 
   scenario 'user tries to register with mis-matched passwords' do

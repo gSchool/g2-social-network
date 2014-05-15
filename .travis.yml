@@ -10,7 +10,9 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure: Lni6iUleQqWH+6KlhnVg0/bX3eKcn6nPYSNiC4IKJA5e8pLEkxOvXTOcybvE+Dpt4EhqthOpB4F+tjDw80crB/ci8KPoCbdpngme355wuPCYGlNAbywyM/G02oa6xnEVPSV345fYwCJFX2UtJaNviWxTBmB6lv19gqhNhgU4s/8=
+    secure: TRnge89CpbDVdrFVbALNHtI6one7xD81ql6pzInB6g7IX44uAP7m/2zQeS5FcfLuC66Drzibjl5s1qbVG2ffRPEITFcixUtTGeggYmnJRLw7PlgK8fDNSeUDdO2NEkjQ57qJKWjCAWcduP+/JUt5uX9FLA7kim48VuE2ShKhGa8=
   app: g2-social-network-staging
   on:
     repo: gSchool/g2-social-network
+  run:
+    - "bundle exec rake db:migrate"
