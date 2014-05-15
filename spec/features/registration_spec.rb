@@ -22,7 +22,7 @@ feature 'User can create an account' do
     fill_in 'Password', with: 'hello123'
     fill_in 'Password confirmation', with: 'goodbye123'
     click_on 'Create an Account'
-    expect(page).to have_content "Password confirmation doesn't match Password"
+    expect(page).to have_content "Password must match confirmation"
   end
 
 end

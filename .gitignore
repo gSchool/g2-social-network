@@ -16,4 +16,4 @@
 /tmp
 .rspec
 .env
-.idea
+.idea/
