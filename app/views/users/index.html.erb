@@ -1,1 +1,12 @@
-<h2>Welcome to Bradtke's Book</h2>
+<div id="users_list_container">
+  <div id="users_list_title"><h2>All Users</h2></div>
+<ul>
+  <% @users.each do |user| %>
+      <li>
+        <div id="profile_picture_thumbnail"></div>
+        <div id="user_first_and_last"><%= user.first_name %> <%= user.last_name %></div>
+        <div id="add_or_unfriend_button"></div>
+      </li>
+  <% end %>
+</ul>
+</div>

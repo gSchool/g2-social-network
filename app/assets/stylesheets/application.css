@@ -43,3 +43,13 @@ header {
 #right_nav a {
     text-decoration: none;
 }
+#users_list_container {
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    text-align: left;
+}
+#users_list_container ul {
+    text-decoration: none;
+    list-style-type: none;
+}
