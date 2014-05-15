@@ -15,5 +15,10 @@ describe User do
       @user.first_name = " "
       expect(@user).to_not be_valid
     end
+
+    it "last name can't be blank" do
+      @user.last_name = " "
+      expect(@user).to_not be_valid
+    end
   end
 end
