@@ -59,5 +59,6 @@ feature "Users interact with site" do
     end
 
     expect(page).to have_content 'Friend added'
+    expect(page).to have_content 'Unfriend'
   end
 end
