@@ -1,31 +1,36 @@
-<h2>Bradtke Book</h2>
+<div class="body_container">
+  <h2 style="color: #FF9900">Bradtke Book</h2>
 
-<% if @user.errors.present? %>
-  <%if @user.errors[:password_confirmation].present? %>
-      <%= @user.errors[:password_confirmation].first %>
-  <% else %>
-    <% @user.errors.full_messages.each do |message| %>
-      <%= message %>
+  <div class="error">
+    <% if @user.errors.present? %>
+      <% if @user.errors[:password_confirmation].present? %>
+        <%= @user.errors[:password_confirmation].first %>
+      <% else %>
+        <% @user.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
     <% end %>
+  </div>
+
+  <%= form_for @user, url: "/users" do |f| %>
+
+    <p><%= f.label :first_name %>
+      <%= f.text_field :first_name %></p>
+
+    <p><%= f.label :last_name %>
+      <%= f.text_field :last_name %></p>
+
+    <p><%= f.label :email %>
+      <%= f.text_field :email %></p>
+
+    <p><%= f.label :password %>
+      <%= f.password_field :password %></p>
+
+    <p><%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %></p>
+
+    <p><%= f.submit "Create an Account" %></p>
+
   <% end %>
-<% end %>
-
-<%= form_for @user, url: "/users" do |f| %>
-  <p><%= f.label :first_name %>
-    <%= f.text_field :first_name %></p>
-
-  <p><%= f.label :last_name %>
-    <%= f.text_field :last_name %></p>
-
-  <p><%= f.label :email %>
-    <%= f.text_field :email %></p>
-
-  <p><%= f.label :password %>
-    <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.submit "Create an Account" %></p>
-
-<% end %>
+</div>

@@ -16,49 +16,117 @@
 body {
     margin: 0;
 }
+
+.body_container {
+    margin-left: 30em;
+    margin-top: 10em;
+    font-family: 'Roboto', sans-serif;
+    min-height: 350px;
+
+}
+
+.root_page_container {
+
+    font-family: 'Roboto', sans-serif;
+    min-height: 425px;
+}
+
+.root_text {
+    margin-left: 5em;
+    margin-top: 5em;
+}
+
+.root_text a {
+    text-decoration: none;
+    color: #FF9900
+}
+
+form label {
+    display: inline;
+    min-width: 175px;
+    float: left;
+}
+
+.error {
+    color: red;
+
+}
+
+.field_with_errors input {
+    border: 1px solid red;
+}
+
+form input {
+    min-width: 175px;
+}
+
 header {
-    background-color: cornflowerblue;
-    height: 50px;
+    background-color: #424242;
+    height: 75px;
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #E9E9E9;
+
 }
+
+header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #3299BB;
+    min-height: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+
 .nav_container {
     width: 100%;
 }
+
 #left_nav {
     margin-top: 1%;
     margin-left: 2%;
     display: inline-block;
 }
+
 #left_nav a {
     text-decoration: none;
     font-size: 150%;
 }
+
 #right_nav {
     float: right;
     margin-top: 1.5%;
     margin-right: 2%;
     display: inline-block;
 }
+
 #right_nav a {
     text-decoration: none;
 }
+
 #users_list_container {
     position: fixed;
     top: 20%;
     left: 30%;
     text-align: left;
 }
+
 #users_list_container ul {
     text-decoration: none;
     list-style-type: none;
 }
+
 #user_first_and_last {
     display: inline-block;
 }
+
 #add_or_unfriend_button {
     display: inline-block;
 }
+
 #profile_picture_thumbnail {
     display: inline-block;
 }
