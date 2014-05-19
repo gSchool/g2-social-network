@@ -55,7 +55,7 @@ feature "Users interact with site" do
     expect(page).to_not have_content 'Unfriend'
 
     within '#users_list_container' do
-      page.first(:button, 'Add').click
+      page.first(:button, 'Add Friend').click
     end
 
     expect(page).to have_content 'Friend added'
