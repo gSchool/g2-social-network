@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
-    @current_user = User.find session[:id]
+    if session[:id] != nil
+      @users = User.all
+      @current_user = User.find session[:id]
+    else
+      render 'public/404.html'
+    end
   end
 
   def new
