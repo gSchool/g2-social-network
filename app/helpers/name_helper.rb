@@ -1,5 +1,5 @@
 module NameHelper
   def user_display_name(user)
-    "#{user.first_name} #{user.last_name} (#{link_to(user.email, user_path(user.id))})".html_safe
+    "#{h(user.first_name)} #{h(user.last_name)} (#{link_to(user.email, user_path(user.id))})".html_safe
   end
 end
