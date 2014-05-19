@@ -7,5 +7,8 @@ describe Graph do
     graph = Graph.new
 
     expect{graph.add_friendship(mike.id, seth.id)}.to change{Friendship.all.length}.by(1)
+    expect(Friendship.last.user_id).to eq(mike.id)
+    expect(Friendship.last.friend_id).to eq(seth.id)
+
   end
 end
