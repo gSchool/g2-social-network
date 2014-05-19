@@ -9,6 +9,7 @@ describe NameHelper do
       actual = helper.user_display_name(user)
 
       expect(actual).to eq expected
+      expect(actual).to be_html_safe
     end
   end
 
