@@ -15,19 +15,24 @@
       <% if current_user %>
         <%= link_to "Logout", session_path, method: :delete %>
       <% else %>
-        <a href="/users/new">Register</a>
-        <a href="/login">Login</a>
+        <a href="/users/new" class="register">Register</a>
+        <a href="/login" class="login">Login</a>
       <% end %>
     </div>
   </div>
 </header>
-<div class="flash_messages">
-  <%= flash[:register_message] %>
-  <%= flash[:message] %>
-  <%= flash[:notice] %>
+<% if flash.present? %>
+  <div class="flash_messages">
+    <%= flash[:register_message] %>
+    <%= flash[:message] %>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<div class="body_container">
+  <div class="inner_container">
+    <%= yield %>
+  </div>
 </div>
-
-<%= yield %>
 <footer>
 
 </footer>

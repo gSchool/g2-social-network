@@ -1,38 +1,39 @@
-<div class="body_container">
-  <h2 style="color: #FF9900">Bradtke Book</h2>
+<div class="authentication_form">
+  <h2>Bradtke Book</h2>
+  <% if @user.errors.present? %>
+    <ul>
+      <div class="error">
 
-  <ul>
-    <div class="error">
-      <% if @user.errors.present? %>
-          <% if @user.errors[:password_confirmation].present? %>
-              <li><%= @user.errors[:password_confirmation].first %></li>
-          <% end %>
-          <% @user.errors.delete(:password_confirmation) %>
-          <% @user.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-          <% end %>
-      <% end %>
-    </div>
-  </ul>
+        <% if @user.errors[:password_confirmation].present? %>
+          <li><%= @user.errors[:password_confirmation].first %></li>
+        <% end %>
+        <% @user.errors.delete(:password_confirmation) %>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+
+      </div>
+    </ul>
+  <% end %>
 
   <%= form_for @user, url: "/users" do |f| %>
 
-      <p><%= f.label :first_name %>
-        <%= f.text_field :first_name %></p>
+    <p><%= f.label :first_name %>
+      <%= f.text_field :first_name %></p>
 
-      <p><%= f.label :last_name %>
-        <%= f.text_field :last_name %></p>
+    <p><%= f.label :last_name %>
+      <%= f.text_field :last_name %></p>
 
-      <p><%= f.label :email %>
-        <%= f.text_field :email %></p>
+    <p><%= f.label :email %>
+      <%= f.text_field :email %></p>
 
-      <p><%= f.label :password %>
-        <%= f.password_field :password %></p>
+    <p><%= f.label :password %>
+      <%= f.password_field :password %></p>
 
-      <p><%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %></p>
+    <p><%= f.label :password_confirmation, "Confirm password" %>
+      <%= f.password_field :password_confirmation %></p>
 
-      <p><%= f.submit "Create an Account" %></p>
+    <p><%= f.submit "Create an Account" %></p>
 
   <% end %>
 </div>
