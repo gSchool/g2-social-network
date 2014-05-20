@@ -37,7 +37,15 @@ body {
 .root_page_container {
 
     font-family: 'Roboto', sans-serif;
-    min-height: 425px;
+    min-height: 525px;
+}
+
+.tag_line {
+    position: fixed;
+    top: 20%;
+    left: 25%;
+    color: #FF9900;
+    font-weight: bold;
 }
 
 .root_text {
