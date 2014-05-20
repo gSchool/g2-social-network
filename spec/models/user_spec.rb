@@ -35,6 +35,8 @@ describe User do
     it "password must be at least 10 characters" do
       @user.password = "123456789"
       expect(@user).to_not be_valid
+      @user.password = "1234567890"
+      expect(@user).to be_valid
     end
 
     it "removes a user by id from the user dataset" do
