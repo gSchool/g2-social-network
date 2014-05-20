@@ -31,5 +31,20 @@ describe User do
       @user.password_digest = ""
       expect(@user).to_not be_valid
     end
+
+    it "removes a user by id from the user dataset" do
+      user_2 = User.create!(first_name: 'Paul',
+                   last_name: 'Wenig',
+                   email: 'paul@example.com',
+                   password: 'hello123')
+
+      user_3 = User.create!(first_name: 'Mike',
+                   last_name: 'Kauffman',
+                   email: 'mike@example.com',
+                   password: 'hello123')
+
+      expect(User.all_except(user_2.id)).not_to include(user_2)
+      expect(User.all_except(user_2.id)).to include(user_3)
+    end
   end
 end
