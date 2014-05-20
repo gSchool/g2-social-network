@@ -19,6 +19,7 @@ feature 'User can create an account' do
     scenario 'User can log out' do
       click_on "Logout"
       expect(page).to_not have_content "Logout"
+      expect(page).to have_content "You have been logged out"
     end
   end
 

@@ -13,7 +13,7 @@
     <div id="left_nav"><a href="/">Bradtke's Book</a></div>
     <div id="right_nav">
       <% if current_user %>
-        <%= link_to "Logout", "/logout", method: :delete %>
+        <%= link_to "Logout", session_path, method: :delete %>
       <% else %>
         <a href="/users/new">Register</a>
         <a href="/login">Login</a>
@@ -24,6 +24,7 @@
 <div class="flash_messages">
   <%= flash[:register_message] %>
   <%= flash[:message] %>
+  <%= flash[:notice] %>
 </div>
 
 <%= yield %>
