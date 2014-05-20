@@ -33,4 +33,14 @@ describe ApplicationController do
       expect(controller.is_logged_in?).to eq true
     end
   end
+
+  describe 'log_in' do
+    it 'sets id in the session' do
+      user = User.new(id: 12345)
+
+      controller.log_in(user)
+
+      expect(session[:id]).to eq 12345
+    end
+  end
 end

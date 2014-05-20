@@ -5,13 +5,21 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_logged_in?
 
+  def log_in(user)
+    session[:id] = user.id
+  end
+
   def current_user
     if is_logged_in?
-      User.find(session[:id])
+      User.find(logged_in_user_id)
     end
   end
 
   def is_logged_in?
-    !session[:id].nil?
+    !logged_in_user_id.nil?
+  end
+
+  def logged_in_user_id
+    session[:id]
   end
 end
