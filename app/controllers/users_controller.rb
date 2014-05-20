@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     password_confirmation: params[:user][:password_confirmation]
     )
     if @user.save
+
       session[:id] = @user.id
       flash[:register_message] = "Welcome #{@user.email}"
       redirect_to '/users'
