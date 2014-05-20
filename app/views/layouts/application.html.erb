@@ -4,14 +4,21 @@
   <title>G2SocialNetwork</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link href='http://fonts.googleapis.com/css?family=Roboto|Open+Sans' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto|Open+Sans' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <header>
   <div class="nav-container">
     <div id="left_nav"><a href="/">Bradtke's Book</a></div>
-    <div id="right_nav"><a href="/login">Login</a></div>
+    <div id="right_nav">
+      <% if current_user %>
+        <%= link_to "Logout", "/logout", method: :delete %>
+      <% else %>
+        <a href="/users/new">Register</a>
+        <a href="/login">Login</a>
+      <% end %>
+    </div>
   </div>
 </header>
 

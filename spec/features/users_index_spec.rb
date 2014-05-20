@@ -10,6 +10,7 @@ feature "Users interact with site" do
     fill_in 'Password', with: 'hello123'
     fill_in 'Password confirmation', with: 'hello123'
     click_on 'Create an Account'
+    click_on 'Logout'
 
     visit '/'
     click_on 'Register'
@@ -19,6 +20,7 @@ feature "Users interact with site" do
     fill_in 'Password', with: 'hello123'
     fill_in 'Password confirmation', with: 'hello123'
     click_on 'Create an Account'
+    click_on 'Logout'
 
     visit '/'
     click_on 'Register'
@@ -43,6 +45,7 @@ feature "Users interact with site" do
     fill_in 'Password', with: 'hello123'
     fill_in 'Password confirmation', with: 'hello123'
     click_on 'Create an Account'
+    click_on 'Logout'
 
     visit '/'
     click_on 'Register'
