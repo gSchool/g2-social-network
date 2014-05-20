@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def index
     if session[:id] != nil
       @users = User.all
+      @graph = Graph.new
       @current_user = User.find session[:id]
     else
       render 'public/404.html'
