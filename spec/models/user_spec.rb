@@ -6,7 +6,7 @@ describe User do
       @user = User.new(first_name: 'Gerard',
                        last_name: 'Cote',
                        email: 'gerard@example.com',
-                       password: 'hello123'
+                       password: 'hello12345'
       )
       expect(@user).to be_valid
     end
@@ -32,16 +32,21 @@ describe User do
       expect(@user).to_not be_valid
     end
 
+    it "password must be at least 10 characters" do
+      @user.password = "123456789"
+      expect(@user).to_not be_valid
+    end
+
     it "removes a user by id from the user dataset" do
       user_2 = User.create!(first_name: 'Paul',
                    last_name: 'Wenig',
                    email: 'paul@example.com',
-                   password: 'hello123')
+                   password: 'hello12345')
 
       user_3 = User.create!(first_name: 'Mike',
                    last_name: 'Kauffman',
                    email: 'mike@example.com',
-                   password: 'hello123')
+                   password: 'hello12345')
 
       expect(User.all_except(user_2.id)).not_to include(user_2)
       expect(User.all_except(user_2.id)).to include(user_3)

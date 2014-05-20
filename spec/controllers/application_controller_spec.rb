@@ -10,7 +10,7 @@ describe ApplicationController do
         first_name: 'Gerard',
         last_name: 'Cote',
         email: 'gerard@example.com',
-        password: 'hello123'
+        password: 'hello12345'
       )
       session[:id] = user.id
       expect(controller.current_user).to eq user
