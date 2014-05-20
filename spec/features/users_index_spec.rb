@@ -8,7 +8,7 @@ feature "Users interact with site" do
     fill_in 'Last name', with: 'Peng'
     fill_in 'Email', with: 'bebe@example.com'
     fill_in 'Password', with: 'hello123'
-    fill_in 'Password confirmation', with: 'hello123'
+    fill_in 'Confirm password', with: 'hello123'
     click_on 'Create an Account'
     click_on 'Logout'
 
@@ -18,7 +18,7 @@ feature "Users interact with site" do
     fill_in 'Last name', with: 'M'
     fill_in 'Email', with: 'seth@example.com'
     fill_in 'Password', with: 'hello123'
-    fill_in 'Password confirmation', with: 'hello123'
+    fill_in 'Confirm password', with: 'hello123'
     click_on 'Create an Account'
     click_on 'Logout'
 
@@ -28,7 +28,7 @@ feature "Users interact with site" do
     fill_in 'Last name', with: 'S'
     fill_in 'Email', with: 'elli@example.com'
     fill_in 'Password', with: 'hello123'
-    fill_in 'Password confirmation', with: 'hello123'
+    fill_in 'Confirm password', with: 'hello123'
     click_on 'Create an Account'
 
     expect(page).to have_content "Bebe Peng"
@@ -42,7 +42,7 @@ feature "Users interact with site" do
     fill_in 'Last name', with: 'Peng'
     fill_in 'Email', with: 'bebe@example.com'
     fill_in 'Password', with: 'hello123'
-    fill_in 'Password confirmation', with: 'hello123'
+    fill_in 'Confirm password', with: 'hello123'
     click_on 'Create an Account'
     click_on 'Logout'
 
@@ -52,7 +52,7 @@ feature "Users interact with site" do
     fill_in 'Last name', with: 'M'
     fill_in 'Email', with: 'seth@example.com'
     fill_in 'Password', with: 'hello123'
-    fill_in 'Password confirmation', with: 'hello123'
+    fill_in 'Confirm password', with: 'hello123'
     click_on 'Create an Account'
     expect(page).to_not have_content 'Unfriend'
 
