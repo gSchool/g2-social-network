@@ -33,7 +33,6 @@ feature "Users interact with site" do
 
     expect(page).to have_content "Bebe Peng"
     expect(page).to have_content "Seth M"
-    expect(page).to have_content "Ellie S"
   end
 
   scenario "user can add a friend" do
@@ -57,7 +56,7 @@ feature "Users interact with site" do
     click_on 'Create an Account'
     expect(page).to_not have_content 'Unfriend'
 
-    within '#users_list_container' do
+    within '.body_container' do
       page.first(:button, 'Add Friend').click
     end
 

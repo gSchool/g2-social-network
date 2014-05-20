@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     if session[:id] != nil
-      @users = User.all
+      @users = User.all_except(session[:id])
       @graph = Graph.new
       @current_user = User.find session[:id]
     else

@@ -17,6 +17,15 @@ body {
     margin: 0;
 }
 
+.flash_messages {
+    font-family: 'Roboto', sans-serif;
+    background-color: lightgreen;
+    font-size: 200%;
+    min-width: 100%;
+    color: white;
+    text-align: center;
+}
+
 .body_container {
     margin-left: 30em;
     margin-top: 10em;
@@ -58,6 +67,11 @@ form label {
 
 form input {
     min-width: 175px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
 }
 
 header {
@@ -114,6 +128,10 @@ footer {
     text-align: left;
 }
 
+#users_list_title {
+    padding-left: 5%;
+}
+
 #users_list_container ul {
     text-decoration: none;
     list-style-type: none;
@@ -121,6 +139,7 @@ footer {
 
 #user_first_and_last {
     display: inline-block;
+    min-width: 120px;
 }
 
 #add_or_unfriend_button {
