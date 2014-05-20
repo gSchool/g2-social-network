@@ -9,8 +9,9 @@ feature 'User can create an account' do
       fill_in 'First name', with: 'Bebe'
       fill_in 'Last name', with: 'Peng'
       fill_in 'Email', with: 'bebe@example.com'
-      fill_in 'Password', with: 'hello123'
-      fill_in 'Confirm password', with: 'hello123'
+      fill_in 'Password', with: 'hello12345'
+      fill_in 'Confirm password', with: 'hello12345'
+
       click_on 'Create an Account'
       expect(page).to have_content "Welcome bebe@example.com"
       expect(page).to_not have_content "Register"
@@ -30,7 +31,7 @@ feature 'User can create an account' do
       fill_in 'First name', with: 'Bebe'
       fill_in 'Last name', with: 'Peng'
       fill_in 'Email', with: 'bebe@example.com'
-      fill_in 'Password', with: 'hello123'
+      fill_in 'Password', with: 'hello12345'
       fill_in 'Confirm password', with: 'goodbye123'
       click_on 'Create an Account'
       expect(page).to have_content "Password must match confirmation"

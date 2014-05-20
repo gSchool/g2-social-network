@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def log_user_out
+    session[:id] = nil
+  end
+  helper_method :log_user_out
+
+  def log_user_in(user_id)
+    session[:id] = user_id
+  end
 end

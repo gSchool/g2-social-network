@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   def index
-    if session[:id] != nil
+    if current_user
       @users = User.all_except(session[:id])
       @graph = Graph.new
-      @current_user = User.find session[:id]
+      @current_user = current_user
     else
       render 'public/404.html'
     end
@@ -22,8 +22,7 @@ class UsersController < ApplicationController
     password_confirmation: params[:user][:password_confirmation]
     )
     if @user.save
-
-      session[:id] = @user.id
+      log_user_in(@user.id)
       flash[:register_message] = "Welcome #{@user.email}"
       redirect_to '/users'
     else

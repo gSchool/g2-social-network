@@ -2,6 +2,15 @@ body {
   margin: 0;
 }
 
+.tag_line {
+  color: #FF9900;
+  font-weight: bold;
+  width:80%;
+  margin:1em auto;
+  font-size:2em;
+  text-align:center;
+}
+
 .flash_messages {
   font-family: 'Roboto', sans-serif;
   background-color: lightgreen;
