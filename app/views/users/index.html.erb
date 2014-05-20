@@ -9,8 +9,7 @@
           <div id="user_first_and_last"><%= user.first_name %> <%= user.last_name %></div>
           <div id="add_or_unfriend_button">
             <% if @current_user.id != user.id %>
-                <% graph = Graph.new %>
-                <% if graph.are_friends?(@current_user.id, user.id) %>
+                <% if @graph.are_friends?(@current_user.id, user.id) %>
                     <form method="post" action="/friendships">
                       <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
                       <input type="hidden" name="friend_id" value="<%= user.id %>">
