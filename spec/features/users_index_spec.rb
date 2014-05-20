@@ -53,7 +53,7 @@ feature "Users interact with site" do
     click_on 'Create an Account'
     expect(page).to_not have_content 'Unfriend'
 
-    within '#users_list_container' do
+    within '.body_container' do
       page.first(:button, 'Add Friend').click
     end
 
