@@ -7,6 +7,9 @@ before_script:
 - bundle exec rake db:migrate
 script:
 - bundle exec rake spec
+branches:
+  only:
+    - master
 deploy:
   provider: heroku
   api_key:
