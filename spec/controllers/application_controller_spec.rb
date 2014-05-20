@@ -16,7 +16,8 @@ describe ApplicationController do
       expect(controller.current_user).to eq user
     end
     it "can log a user out" do
-      user = User.create!(
+      user = User.new(
+        id: 1,
         first_name: 'Gerard',
         last_name: 'Cote',
         email: 'gerard@example.com',
