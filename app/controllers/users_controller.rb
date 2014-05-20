@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
-    @current_user = User.find session[:id]
+    @current_user = current_user
   end
 
   def new
