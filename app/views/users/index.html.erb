@@ -1,28 +1,28 @@
-<div id="users_list_container">
-  <div id="users_list_title"><h2>All Users</h2></div>
-  <%= flash[:register_message] %>
-  <%= flash[:message] %>
-  <ul>
-    <% @users.each do |user| %>
-        <li>
-          <div id="profile_picture_thumbnail"></div>
-          <div id="user_first_and_last"><%= user.first_name %> <%= user.last_name %></div>
-          <div id="add_or_unfriend_button">
-            <% if @graph.are_friends?(@current_user.id, user.id) %>
-                <form method="post" action="/friendships">
-                  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                  <input type="hidden" name="friend_id" value="<%= user.id %>">
-                  <button type="submit">Unfriend</button>
-                </form>
-            <% else %>
-                <form method="post" action="/friendships">
-                  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                  <input type="hidden" name="friend_id" value="<%= user.id %>">
-                  <button type="submit">Add Friend</button>
-                </form>
-            <% end %>
-          </div>
-        </li>
-    <% end %>
-  </ul>
-</div>
+<div class="body_container">
+    <div id="users_list_title"><h2>All Users</h2></div>
+    <%= flash[:register_message] %>
+    <%= flash[:message] %>
+    <ul>
+      <% @users.each do |user| %>
+          <li>
+            <div id="profile_picture_thumbnail"></div>
+            <div id="user_first_and_last"><%= user.first_name %> <%= user.last_name %></div>
+            <div id="add_or_unfriend_button">
+              <% if @graph.are_friends?(@current_user.id, user.id) %>
+                  <form method="post" action="/friendships">
+                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                    <input type="hidden" name="friend_id" value="<%= user.id %>">
+                    <button type="submit">Unfriend</button>
+                  </form>
+              <% else %>
+                  <form method="post" action="/friendships">
+                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                    <input type="hidden" name="friend_id" value="<%= user.id %>">
+                    <button type="submit">Add Friend</button>
+                  </form>
+              <% end %>
+            </div>
+          </li>
+      <% end %>
+    </ul>
+  </div>
