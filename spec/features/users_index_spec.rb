@@ -31,7 +31,6 @@ feature "Users interact with site" do
 
     expect(page).to have_content "Bebe Peng"
     expect(page).to have_content "Seth M"
-    expect(page).to have_content "Ellie S"
   end
 
   scenario "user can add a friend" do
