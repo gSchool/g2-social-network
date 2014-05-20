@@ -10,7 +10,11 @@
 <header>
   <div class="nav-container">
     <div id="left_nav"><a href="/">Bradtke's Book</a></div>
-    <div id="right_nav"><a href="/login">Login</a></div>
+    <% if is_logged_in? %>
+        <div id="right_nav"><a href="/logout">Logout</a></div>
+    <% else %>
+        <div id="right_nav"><a href="/login">Login</a></div>
+    <% end %>
   </div>
 </header>
 
