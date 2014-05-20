@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :users
   resources :friendships
 
-  delete '/logout', to: 'sessions#destroy'
+  resource :session, only: [:destroy]
 end
