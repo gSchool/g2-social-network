@@ -17,6 +17,15 @@ body {
     margin: 0;
 }
 
+.flash_messages {
+    font-family: 'Roboto', sans-serif;
+    background-color: lightgreen;
+    font-size: 200%;
+    min-width: 100%;
+    color: white;
+    text-align: center;
+}
+
 .body_container {
     margin-left: 30em;
     margin-top: 10em;
