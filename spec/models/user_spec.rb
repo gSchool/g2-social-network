@@ -3,11 +3,7 @@ require 'spec_helper'
 describe User do
   describe "validations" do
     before do
-      @user = User.new(first_name: 'Gerard',
-                       last_name: 'Cote',
-                       email: 'gerard@example.com',
-                       password: 'hello12345'
-      )
+      @user = new_user
       expect(@user).to be_valid
     end
 
@@ -40,18 +36,10 @@ describe User do
     end
 
     it "removes a user by id from the user dataset" do
-      user_2 = User.create!(first_name: 'Paul',
-                   last_name: 'Wenig',
-                   email: 'paul@example.com',
-                   password: 'hello12345')
-
-      user_3 = User.create!(first_name: 'Mike',
-                   last_name: 'Kauffman',
-                   email: 'mike@example.com',
-                   password: 'hello12345')
-
-      expect(User.all_except(user_2.id)).not_to include(user_2)
-      expect(User.all_except(user_2.id)).to include(user_3)
+      user_1 = create_user
+      user_2 = create_user
+      expect(User.all_except(user_1.id)).not_to include(user_1)
+      expect(User.all_except(user_1.id)).to include(user_2)
     end
   end
 end
