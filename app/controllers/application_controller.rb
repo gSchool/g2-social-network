@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   helper_method :log_user_out
 
   def log_user_in(user)
-    session[:id] = user
+    session[:id] = user.id
   end
 end

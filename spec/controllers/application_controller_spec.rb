@@ -13,13 +13,13 @@ describe ApplicationController do
 
     it "can log a user in" do
       user = new_user(id: 1)
-      controller.log_user_in(user.id)
+      controller.log_user_in(user)
       expect(session[:id]).to eq 1
     end
 
     it "can log a user out" do
       user = new_user(id: 1)
-      controller.log_user_in(user.id)
+      controller.log_user_in(user)
       expect(session[:id]).to eq 1
       controller.log_user_out
       expect(session[:id]).to eq nil
