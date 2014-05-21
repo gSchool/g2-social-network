@@ -22,6 +22,16 @@ feature 'User can create an account' do
       expect(page).to_not have_content "Logout"
       expect(page).to have_content "You have been logged out"
     end
+
+    scenario 'User can log in' do
+      click_on 'Logout'
+      click_on 'Login'
+      fill_in 'Email', with: 'bebe@example.com'
+      fill_in 'Password', with: 'hello12345'
+      click_button 'Login'
+
+      expect(page).to have_content "Welcome back bebe@example.com"
+    end
   end
 
   context "Registration validation" do
