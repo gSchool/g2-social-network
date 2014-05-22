@@ -24,7 +24,7 @@ header a {
 }
 
 #left_nav a {
-  text-decoration: none;
+//  text-decoration: none;
   font-size: 150%;
 }
 
@@ -37,6 +37,11 @@ header a {
 
 #right_nav a {
   text-decoration: none;
+}
+
+#right_nav a:hover {
+  color: #BCBCBC;
+  text-decoration: underline;
 }
 
 .register, .login, .logout{
