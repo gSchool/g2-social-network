@@ -15,6 +15,7 @@
       <div id="right_nav">
         <% if current_user %>
           <%= link_to "Logout", session_path, method: :delete, class:"logout" %>
+          
         <% else %>
           <a href="/users/new" class="register">Register</a>
           <a href="/login" class="login">Login</a>

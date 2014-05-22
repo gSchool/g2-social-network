@@ -89,4 +89,9 @@ feature "Users interact with site" do
     expect(page).to have_content 'Add Friend'
     expect(page).to_not have_content 'Unfriend'
   end
+
+  scenario "user can view profile page" do
+    click_on 'bebe@example.com'
+    expect(page).to have_content "Profile"
+  end
 end
