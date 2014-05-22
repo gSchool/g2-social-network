@@ -6,9 +6,15 @@
 }
 
 li.user {
-  margin-bottom: 1em;
+  padding: 1em;
   clear: both;
   overflow: hidden;
+}
+li.user:nth-child(odd) {
+  background-color: #E9E9E9;
+}
+li.user:nth-child(even) {
+  background-color: #BCBCBC;
 }
 
 .user_image {
