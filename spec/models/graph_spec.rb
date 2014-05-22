@@ -27,4 +27,15 @@ describe Graph do
     expect(graph.are_friends?(mike.id, seth.id)).to eq true
     expect(graph.are_friends?(seth.id, mike.id)).to eq true
   end
+
+  it "friendships between users can be removed" do
+    mike = create_user(email: 'mike@test.com')
+    seth = create_user(email: 'seth@test.com')
+    graph = Graph.new
+    expect(graph.are_friends?(mike.id, seth.id)).to eq false
+    graph.add_friendship(mike.id, seth.id)
+    expect(graph.are_friends?(mike.id, seth.id)).to eq true
+    graph.remove_friendship(mike.id, seth.id)
+    expect(graph.are_friends?(mike.id, seth.id)).to eq false
+  end
 end
