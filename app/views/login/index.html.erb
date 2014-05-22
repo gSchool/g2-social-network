@@ -1,16 +1,27 @@
 
+<div class="error">
+<%= flash[:login_error] %>
+  </div>
+
 <div class="authentication_form">
   <h2>Bradtke Book</h2>
 
-  <%= form_for @user, url: "/session" do |f| %>
+  <%= form_tag(:controller => :sessions, :action => :create) do %>
 
-    <p><%= f.label :email %>
-      <%= f.text_field :email %></p>
 
-    <p><%= f.label :password %>
-      <%= f.password_field :password %></p>
+    <p><%= label :email, :email %>
+      <%= text_field_tag :email %></p>
 
-    <p><%= f.submit "Login" %></p>
+    <p><%= label :password, :password %>
+      <%= password_field_tag :password %></p>
+
+    <p><%= submit_tag "Login" %></p>
 
   <% end %>
 </div>
+
+
+
+
+
+
