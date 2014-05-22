@@ -1,13 +1,13 @@
 form label {
   display: inline;
-//  min-width: 175px;
+  //  min-width: 175px;
   width: 33%;
   float: left;
   font-size: 1.15em;
 }
 
 form input {
-//  min-width: 175px;
+  //  min-width: 175px;
   width: 66%;
   padding: .6em;
 
@@ -17,17 +17,18 @@ form input {
   border: 1px solid red;
 }
 
-.authentication_form{
-  max-width:33em;
-  min-width:25em;
-  margin:0 auto;
-  h2{
+.authentication_form {
+  max-width: 33em;
+  min-width: 25em;
+  margin: 0 auto;
+  h2 {
     margin-left: 33%;
   }
-  input[type="submit"]{
+  input[type="submit"] {
     margin-left: 33%;
-    width: 8em;
-    font-size: 1.5em;
+    width: 21em;
+    font-size: 1.0em;
     padding: .6em 0;
+    background-color: #FF9900;
   }
 }
