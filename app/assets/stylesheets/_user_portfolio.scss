@@ -1,34 +1,36 @@
 
-.user_index{
-  width:50%;
-  min-width:400px;
-  margin:0 auto;
+.user_index {
+  width: 50%;
+  min-width: 400px;
+  margin: 0 auto;
 }
 
-li.user{
+li.user {
   margin-bottom: 1em;
-  clear:both;
-  overflow:hidden;
+  clear: both;
+  overflow: hidden;
 }
 
 .user_image {
- display: block;
-  float:left;
+  display: block;
+  float: left;
 }
 
 .user_name {
   display: block;
-  float:left;
+  float: left;
   width: 10em;
   margin-left: 1em;
-  padding:1em;
+  padding: 1em;
 
 }
 
 .friend_button {
   display: block;
-  float:left;
-  padding:1em;
-
-
+  float: left;
+  padding: 1em;
+  button[type="submit"] {
+    background-color: #FF9900;
+    font-size: 1em;
+  }
 }
