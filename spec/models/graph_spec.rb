@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Graph do
   it "creates friendships between users" do
-    mike = create_user
-    seth = create_user
+    mike = create_user(email: 'mike@example.com')
+    seth = create_user(email: 'seth@example.com')
     graph = Graph.new
 
     expect{graph.add_friendship(mike.id, seth.id)}.to change{Friendship.all.length}.by(1)
@@ -19,8 +19,8 @@ describe Graph do
   end
 
   it "can tell if two people are friends" do
-    mike = create_user
-    seth = create_user
+    mike = create_user(email: 'mike@test.com')
+    seth = create_user(email: 'seth@test.com')
     graph = Graph.new
     expect(graph.are_friends?(mike.id, seth.id)).to eq false
     graph.add_friendship(mike.id, seth.id)

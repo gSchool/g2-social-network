@@ -14,7 +14,7 @@
       <div id="left_nav"><a href="/">Bradtke's Book</a></div>
       <div id="right_nav">
         <% if current_user %>
-          <div class="logout"><%= link_to "Logout", session_path, method: :delete %></div>
+          <%= link_to "Logout", session_path, method: :delete, class:"logout" %>
         <% else %>
           <a href="/users/new" class="register">Register</a>
           <a href="/login" class="login">Login</a>
