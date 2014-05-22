@@ -40,6 +40,13 @@ feature "Users interact with site" do
     expect(page).to have_content "Seth M"
   end
 
+  scenario "only logged in users can view all users" do
+    click_on 'Logout'
+    visit '/users'
+    expect(page).to have_content "Please login"
+  end
+
+
   scenario "user can add a friend" do
     click_on 'Logout'
     visit '/'
