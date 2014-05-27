@@ -10,12 +10,7 @@ feature 'User can see their details on their profiles page' do
     fill_in 'Password', with: 'hello12345'
     fill_in 'Confirm password', with: 'hello12345'
     click_on 'Create an Account'
-
-    click_on 'Login'
-    fill_in 'Email', with: 'bebe@example.com'
-    fill_in 'Password', with: 'hello12345'
-    click_button 'Login'
-
+    
     click_link 'bebe@example.com'
     expect(page).to have_content 'Bebe Peng'
     expect(page).to have_content 'bebe@example.com'
