@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   def self.all_except(user_id)
     where.not(id: user_id)
   end
+
+  def send_confirmation_email
+    UserMailer.welcome_email(self).deliver
+  end
 end

@@ -9,15 +9,8 @@ feature "Users interact with site" do
     fill_in 'Email', with: 'bebe@example.com'
     fill_in 'Password', with: 'hello12345'
     fill_in 'Confirm password', with: 'hello12345'
-
     click_on 'Create an Account'
-    expect(page).to have_content "Welcome bebe@example.com"
-    expect(page).to_not have_content "Register"
-    expect(page).to_not have_content "Login"
-  end
-  scenario "user can view all users" do
-    click_on 'Logout'
-    visit '/'
+
     click_on 'Register'
     fill_in 'First name', with: 'Seth'
     fill_in 'Last name', with: 'M'
@@ -25,9 +18,7 @@ feature "Users interact with site" do
     fill_in 'Password', with: 'hello12345'
     fill_in 'Confirm password', with: 'hello12345'
     click_on 'Create an Account'
-    click_on 'Logout'
 
-    visit '/'
     click_on 'Register'
     fill_in 'First name', with: 'Ellie'
     fill_in 'Last name', with: 'S'
@@ -35,28 +26,32 @@ feature "Users interact with site" do
     fill_in 'Password', with: 'hello12345'
     fill_in 'Confirm password', with: 'hello12345'
     click_on 'Create an Account'
+  end
+
+  scenario "user can view all users" do
+    visit '/'
+    click_on 'Login'
+    fill_in 'Email', with: 'elli@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
 
     expect(page).to have_content "Bebe Peng"
     expect(page).to have_content "Seth M"
   end
 
   scenario "only logged in users can view all users" do
-    click_on 'Logout'
     visit '/users'
     expect(page).to have_content "Please login"
   end
 
 
   scenario "user can add a friend" do
-    click_on 'Logout'
     visit '/'
-    click_on 'Register'
-    fill_in 'First name', with: 'Seth'
-    fill_in 'Last name', with: 'M'
+    click_on 'Login'
     fill_in 'Email', with: 'seth@example.com'
     fill_in 'Password', with: 'hello12345'
-    fill_in 'Confirm password', with: 'hello12345'
-    click_on 'Create an Account'
+    click_button 'Login'
+
     expect(page).to_not have_content 'Unfriend'
 
     within '.body_container' do
@@ -68,15 +63,12 @@ feature "Users interact with site" do
   end
 
   scenario "user can remove a friend" do
-    click_on 'Logout'
     visit '/'
-    click_on 'Register'
-    fill_in 'First name', with: 'Seth'
-    fill_in 'Last name', with: 'M'
+    click_on 'Login'
     fill_in 'Email', with: 'seth@example.com'
     fill_in 'Password', with: 'hello12345'
-    fill_in 'Confirm password', with: 'hello12345'
-    click_on 'Create an Account'
+    click_button 'Login'
+
     expect(page).to_not have_content 'Unfriend'
 
     within '.body_container' do

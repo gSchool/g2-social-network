@@ -20,9 +20,8 @@ class UsersController < ApplicationController
       password_confirmation: params[:user][:password_confirmation]
     )
     if @user.save
-      log_user_in(@user)
-      flash[:register_message] = "Welcome #{@user.email}"
-      redirect_to '/users'
+      @user.send_confirmation_email
+      redirect_to root_path, notice: "Please check your email for a confirmation"
     else
       render 'users/new'
     end

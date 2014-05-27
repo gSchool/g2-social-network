@@ -12,13 +12,9 @@ feature 'User login' do
     fill_in 'Confirm password', with: 'hello12345'
 
     click_on 'Create an Account'
-    expect(page).to have_content "Welcome bebe@example.com"
-    expect(page).to_not have_content "Register"
-    expect(page).to_not have_content "Login"
   end
 
   scenario 'User can log in' do
-    click_on 'Logout'
     click_on 'Login'
     fill_in 'Email', with: 'bebe@example.com'
     fill_in 'Password', with: 'hello12345'
@@ -27,13 +23,16 @@ feature 'User login' do
   end
 
   scenario 'User can log out' do
+    click_on 'Login'
+    fill_in 'Email', with: 'bebe@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
     click_on "Logout"
     expect(page).to_not have_content "Logout"
     expect(page).to have_content "You have been logged out"
   end
 
   scenario 'User cannot login with invalid email' do
-    click_on 'Logout'
     click_on 'Login'
     fill_in 'Email', with: 'bebe@test.com'
     fill_in 'Password', with: 'hello12345'
@@ -42,7 +41,6 @@ feature 'User login' do
   end
 
   scenario 'User cannot login with valid email but invalid password' do
-    click_on 'Logout'
     click_on 'Login'
     fill_in 'Email', with: 'bebe@example.com'
     fill_in 'Password', with: 'hello12'
