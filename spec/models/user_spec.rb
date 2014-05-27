@@ -30,8 +30,8 @@ describe User do
     end
 
     it "email must follow a certain format" do
-      user_1 = new_user(:email=> 'eric@')
-      expect(user_1).to_not be_valid
+      @user.email= 'eric@'
+      expect(@user).to_not be_valid
     end
 
     it "password can't be blank" do
