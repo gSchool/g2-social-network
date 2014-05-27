@@ -28,6 +28,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+  end
+
   private
 
   def is_user_logged_in?
