@@ -2,8 +2,7 @@ require 'spec_helper'
 
 feature 'User can create an account' do
   context "Successful registration" do
-
-    before :each do
+    scenario "User registers and is prompted to confirm their email" do
       visit ('/')
       click_on 'Register'
       fill_in 'First name', with: 'Bebe'
@@ -13,9 +12,9 @@ feature 'User can create an account' do
       fill_in 'Confirm password', with: 'hello12345'
 
       click_on 'Create an Account'
-      expect(page).to have_content "Welcome bebe@example.com"
-      expect(page).to_not have_content "Register"
-      expect(page).to_not have_content "Login"
+      expect(page).to have_content "Please check your email for a confirmation"
+      expect(page).to have_content "Register"
+      expect(page).to have_content "Login"
     end
   end
 

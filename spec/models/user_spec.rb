@@ -53,5 +53,10 @@ describe User do
       expect(User.all_except(user_1.id)).not_to include(user_1)
       expect(User.all_except(user_1.id)).to include(user_2)
     end
+
+    it "sends an email when a new user registers" do
+      user = new_user(:email=> 'gerardcote24@example.com')
+      expect { user.send_confirmation_email }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
   end
 end
