@@ -27,6 +27,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+  end
+
   def confirm
     user = User.find params[:id]
     user.confirm_user
@@ -46,5 +50,4 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: "Please login"
     end
   end
-
 end
