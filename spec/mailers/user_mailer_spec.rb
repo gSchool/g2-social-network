@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe UserMailer do
 
-  let(:user) { new_user(:email => 'gerardcote25@example.com') }
+  let(:user) { create_user(:email => 'gerardcote25@example.com') }
   let(:mail) { UserMailer.welcome_email(user) }
 
   it "email has the correct text" do
@@ -11,10 +11,10 @@ describe UserMailer do
 Welcome to example.com, Gerard
 ===============================================
 
-You have successfully signed up to example.com,
+You have successfully signed up for Bradtke's Book,
 your username is: gerardcote25@example.com.
 
-To login to the site, just follow this link: /login.
+To confirm your email address, just follow this link: <a href=\"http://localhost:3000/confirm/#{user.id}\">Confirm email address</a>.
 
 Thanks for joining and have a great day!
     INPUT

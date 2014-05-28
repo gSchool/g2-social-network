@@ -7,9 +7,13 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email]).try(:authenticate, params[:password])
     if user
+      if user.confirmation
       log_user_in(user)
       flash[:login_message] = "Welcome back #{user.email}"
       redirect_to '/users'
+      else
+        redirect_to "/login/confirmation/#{user.id}"
+      end
     else
       flash[:failed_login] = "Invalid email or password"
       render 'login/index'

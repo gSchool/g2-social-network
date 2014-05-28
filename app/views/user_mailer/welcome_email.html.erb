@@ -6,11 +6,11 @@
 <body>
 <h1>Welcome to Bradtke's Book, <%= @user.first_name %></h1>
 <p>
-  You have successfully signed up to example.com,
+  You have successfully signed up for Bradtke's Book,
   your username is: <%= @user.email %>.<br>
 </p>
 <p>
-  To login to the site, just follow this link: <%= @url %>.
+  To confirm your email address, just follow this link: <%= link_to "Confirm email address", confirmation_url(@user) %>.
 </p>
 <p>Thanks for joining and have a great day!</p>
 </body>

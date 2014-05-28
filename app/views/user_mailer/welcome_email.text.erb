@@ -1,9 +1,9 @@
 Welcome to example.com, <%= @user.first_name %>
 ===============================================
 
-You have successfully signed up to example.com,
+You have successfully signed up for Bradtke's Book,
 your username is: <%= @user.email %>.
 
-To login to the site, just follow this link: <%= @url %>.
+To confirm your email address, just follow this link: <%= link_to "Confirm email address", confirmation_url(@user) %>.
 
 Thanks for joining and have a great day!

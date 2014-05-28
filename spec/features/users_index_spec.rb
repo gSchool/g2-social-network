@@ -2,30 +2,30 @@ require 'spec_helper'
 
 feature "Users interact with site" do
   before :each do
-    visit ('/')
-    click_on 'Register'
-    fill_in 'First name', with: 'Bebe'
-    fill_in 'Last name', with: 'Peng'
-    fill_in 'Email', with: 'bebe@example.com'
-    fill_in 'Password', with: 'hello12345'
-    fill_in 'Confirm password', with: 'hello12345'
-    click_on 'Create an Account'
-
-    click_on 'Register'
-    fill_in 'First name', with: 'Seth'
-    fill_in 'Last name', with: 'M'
-    fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: 'hello12345'
-    fill_in 'Confirm password', with: 'hello12345'
-    click_on 'Create an Account'
-
-    click_on 'Register'
-    fill_in 'First name', with: 'Ellie'
-    fill_in 'Last name', with: 'S'
-    fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: 'hello12345'
-    fill_in 'Confirm password', with: 'hello12345'
-    click_on 'Create an Account'
+    bebe = User.create(
+      first_name: 'Bebe',
+      last_name: 'Peng',
+      email: 'bebe@example.com',
+      password: 'hello12345',
+      password_confirmation: 'hello12345',
+      confirmation: true
+    )
+    seth = User.create(
+      first_name: 'Seth',
+      last_name: 'M',
+      email: 'seth@example.com',
+      password: 'hello12345',
+      password_confirmation: 'hello12345',
+      confirmation: true
+    )
+    ellie = User.create(
+      first_name: 'Ellie',
+      last_name: 'S',
+      email: 'elli@example.com',
+      password: 'hello12345',
+      password_confirmation: 'hello12345',
+      confirmation: true
+    )
   end
 
   scenario "user can view all users" do
@@ -73,7 +73,7 @@ feature "Users interact with site" do
 
     within '.body_container' do
       page.first(:button, 'Add Friend').click
-      end
+    end
     within '.body_container' do
       page.first(:button, 'Unfriend').click
     end

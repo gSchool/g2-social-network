@@ -3,15 +3,15 @@ require 'spec_helper'
 feature 'User login' do
 
   before :each do
+    User.create(
+      first_name: 'Bebe',
+      last_name: 'Peng',
+      email: 'bebe@example.com',
+      password: 'hello12345',
+      password_confirmation: 'hello12345',
+      confirmation: true
+    )
     visit ('/')
-    click_on 'Register'
-    fill_in 'First name', with: 'Bebe'
-    fill_in 'Last name', with: 'Peng'
-    fill_in 'Email', with: 'bebe@example.com'
-    fill_in 'Password', with: 'hello12345'
-    fill_in 'Confirm password', with: 'hello12345'
-
-    click_on 'Create an Account'
   end
 
   scenario 'User can log in' do
