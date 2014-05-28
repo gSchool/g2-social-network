@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20140527214836) do
     t.string  "last_name"
     t.string  "email"
     t.string  "password_digest"
-    t.string  "profile_pic"
     t.boolean "confirmation",    default: false
+    t.string  "profile_pic"
   end
 
 end

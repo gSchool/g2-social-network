@@ -81,4 +81,21 @@ feature "Users interact with site" do
     expect(page).to have_content 'Add Friend'
     expect(page).to_not have_content 'Unfriend'
   end
+
+  scenario "user can see photos of all friends" do
+    visit '/'
+    click_on 'Login'
+    fill_in 'Email', with: 'elli@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
+    click_link 'elli@example.com'
+    attach_file('Profile pic', Rails.root.join('spec/images/unicorn_cat.jpg'))
+    click_on 'Upload Picture'
+    click_on 'Logout'
+    click_on 'Login'
+    fill_in 'Email', with: 'seth@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
+    expect(page).to have_css('img', visible: 'unicorn_cat.jpg')
+  end
 end

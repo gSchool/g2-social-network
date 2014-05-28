@@ -16,6 +16,6 @@ feature 'User can see their details on their profiles page' do
     click_link 'example@example.com'
     attach_file('Profile pic', Rails.root.join('spec/images/unicorn_cat.jpg'))
     click_on 'Upload Picture'
-    page.should have_css('img', visible: 'unicorn_cat.jpg')
+    expect(page).to have_css('img', visible: 'unicorn_cat.jpg')
   end
 end

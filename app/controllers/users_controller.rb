@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.profile_pic = params[:user][:profile_pic]
-    @user.save!
+    @user.save
     redirect_to user_path
   end
 
