@@ -1,8 +1,26 @@
 <div id="profile_container">
-  <h2><p><%= @user.first_name %> <%= @user.last_name%>'s Profile</p></h2>
-<table>
-  <tr><td>First Name:</td><td><%= @user.first_name %></td></tr>
-  <tr><td>Last Name:</td> <td><%= @user.last_name %></td></tr>
-  <tr><td>Email:</td> <td><%= @user.email %></td></tr>
-</table>
+  <h2><p><%= image_tag(@user.profile_pic) %><%= @user.first_name %> <%= @user.last_name %>'s Profile</p></h2>
+  <%= form_for @user do |f| %>
+    <table>
+      <tr>
+        <td>First Name:</td>
+        <td><%= @user.first_name %></td>
+      </tr>
+      <tr>
+        <td>Last Name:</td>
+        <td><%= @user.last_name %></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :profile_pic %></td>
+        <td><%= f.file_field :profile_pic %>
+          <%= f.submit "Upload Picture" %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
 </div>
+

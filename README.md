@@ -24,3 +24,5 @@ To get this application running locally, you should be able to simply clone this
 + `rake spec`
 + `rails s`
 
+Please note that this application is using carrierwave with rmagick. Please install 'imagemagick' prior to using this app through whatever
+ means you use (i.e. if you use homebrew: `brew install imagemagick`).

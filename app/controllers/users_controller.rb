@@ -31,6 +31,13 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def update
+    @user = current_user
+    @user.profile_pic = params[:user][:profile_pic]
+    @user.save!
+     redirect_to user_path
+  end
+
   private
 
   def is_user_logged_in?

@@ -41,13 +41,14 @@ describe User do
     end
 
     it "password must be at least 8 characters" do
-      @user.password = "1234567"
-      expect(@user).to_not be_valid
-      @user.password = "12345678"
+      @user.password  = "12345678"
       expect(@user).to be_valid
+      @user.password  = "1234567"
+      expect(@user).to_not be_valid
     end
 
     it "removes a user by id from the user dataset" do
+      @user.password = "1234567"
       user_1 = create_user(email: 'ellie@example.com')
       user_2 = create_user(email: 'seth@example.com')
       expect(User.all_except(user_1.id)).not_to include(user_1)
