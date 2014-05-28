@@ -1,5 +1,7 @@
 class LoginController < ApplicationController
   def index
-    @user = User.new
+  end
+  def confirmation
+    @user = User.find params[:id]
   end
 end

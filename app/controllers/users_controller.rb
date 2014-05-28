@@ -20,11 +20,23 @@ class UsersController < ApplicationController
       password_confirmation: params[:user][:password_confirmation]
     )
     if @user.save
-      @user.send_confirmation_email
+      UserMailer.welcome_email(@user).deliver
       redirect_to root_path, notice: "Please check your email for a confirmation"
     else
       render 'users/new'
     end
+  end
+
+  def confirm
+    user = User.find params[:id]
+    user.confirm_user
+    redirect_to '/login', notice: "Your email has been confirmed. You can now log in"
+  end
+
+  def send_confirmation_email
+    user = User.find params[:id]
+    UserMailer.welcome_email(user).deliver
+    redirect_to root_path, notice: "Email has been sent to #{user.email}. Please check your email to confirm"
   end
 
   private
