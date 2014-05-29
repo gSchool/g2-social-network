@@ -181,6 +181,7 @@ DEPENDENCIES
   carrierwave (~> 0.10.0)
   coffee-rails (~> 4.0.0)
   dotenv (~> 0.11.1)
+  dotenv-deployment
   fog (~> 1.22.0)
   jbuilder (~> 2.0)
   jquery-rails
