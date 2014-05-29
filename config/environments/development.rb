@@ -31,7 +31,8 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { host: "https://g2-social-network-development.herokuapp.com"}
+
+  config.action_mailer.default_url_options = { host: "https://g2-social-network-development.herokuapp.com/"}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',

@@ -21,3 +21,4 @@
 .DS_Store
 public/uploads/
 spec/.DS_Store
+.env

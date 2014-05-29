@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'carrierwave', '~> 0.10.0'
+gem 'dotenv-rails'
 gem 'rmagick', '~> 2.13.2', require: false
 gem 'fog', '~> 1.22.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
