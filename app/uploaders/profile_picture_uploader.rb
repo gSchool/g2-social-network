@@ -2,12 +2,17 @@
 
 class ProfilePictureUploader < CarrierWave::Uploader::Base
 
+  def self.fog_public
+    true
+  end
+
 
   process :resize_to_fit => [200, 200]
 
   version :thumb do
     process :resize_to_fill => [100, 100]
   end
+
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
