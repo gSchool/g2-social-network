@@ -16,7 +16,6 @@
 /log/*.log
 /tmp
 .rspec
-.env
 .idea/
 .DS_Store
 public/uploads/

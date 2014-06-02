@@ -1,0 +1,5 @@
+<form method="post" action="/friendships/<%= user.id %>">
+  <input type="hidden" name="_method" value="delete">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <button type="submit">Unfriend</button>
+</form>
