@@ -1,5 +1,6 @@
 <div id="profile_container">
-  <h2><p><%= image_tag(@user.profile_pic) %><%= @user.first_name %> <%= @user.last_name %>'s Profile</p></h2>
+  <h2><%= @user.first_name %> <%= @user.last_name %>'s Profile</h2>
+  <%= image_tag((@user.profile_pic), :class => "profile_pic") %>
   <%= form_for @user do |f| %>
     <table>
       <tr>
