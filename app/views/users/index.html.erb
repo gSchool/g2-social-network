@@ -2,31 +2,23 @@
   <h2>All Users</h2>
   <ul class="user_list">
     <% @users.each do |user| %>
-        <li class="user">
-          <div class="user_image">
-            <% if user.profile_pic? %>
-                <%= image_tag(user.profile_pic.thumb) %>
-            <% else %>
-                <img src="<%= image_path "person_placeholder.png" %>" height="100px">
-            <% end %>
-          </div>
-            <div class="user_name"><%= user.first_name %> <%= user.last_name %></div>
-            <div class="friend_button">
-              <% if @graph.are_friends?(@current_user.id, user.id) %>
-                  <form method="post" action="/friendships/<%= user.id %>">
-                    <input type="hidden" name="_method" value="delete">
-                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                    <button type="submit">Unfriend</button>
-                  </form>
-              <% else %>
-                  <form method="post" action="/friendships">
-                    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-                    <input type="hidden" name="friend_id" value="<%= user.id %>">
-                    <button type="submit">Add Friend</button>
-                  </form>
-              <% end %>
-            </div>
-            </li>
+      <li class="user">
+        <div class="user_image">
+          <% if user.profile_pic? %>
+            <%= image_tag(user.profile_pic.thumb) %>
+          <% else %>
+            <img src="<%= image_path "person_placeholder.png" %>" height="100px">
+          <% end %>
+        </div>
+        <div class="user_name"><%= user.first_name %> <%= user.last_name %></div>
+        <div class="friend_button">
+          <% if @graph.are_friends?(@current_user.id, user.id) %>
+            <%= render 'users/unfriend_form', :user => user %>
+          <% else %>
+            <%= render 'users/add_friend_form', :user => user %>
+          <% end %>
+        </div>
+      </li>
     <% end %>
   </ul>
 
