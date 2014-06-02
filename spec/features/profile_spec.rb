@@ -26,4 +26,12 @@ feature 'User can see their details on their profiles page' do
     click_on 'All Users'
     expect(page).to have_content 'All Users'
   end
+
+  scenario 'User can post on their wall' do
+    click_on 'example@example.com'
+    fill_in 'post[post_body]', with: 'This is my first post!'
+    click_on 'Post'
+    expect(page).to have_content('This is my first post!')
+    expect(page).to have_content('Gerard wrote: ')
+  end
 end

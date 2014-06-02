@@ -1,4 +1,4 @@
-<div id="profile_container">
+<div id="profile_container" class="one_half">
   <h2><%= @user.first_name %> <%= @user.last_name %>'s Profile</h2>
   <%= image_tag((@user.profile_pic), :class => "profile_pic") %>
   <%= form_for @user do |f| %>
@@ -23,5 +23,18 @@
       </tr>
     </table>
   <% end %>
+</div>
+
+<div id="posts_container" class="one_half">
+  <h2><%= @user.first_name %>'s Wall</h2>
+  <%= form_for([@user, @post]) do |f| %>
+    <%= f.label :post_body, "What's on your mind?", class: 'post_area' %>
+    <%= f.text_area :post_body, class: 'post_area' %>
+    <%= f.submit "Post" %>
+  <% end %>
+  <% @posts.each do |post| %>
+   <li><%= User.find(post.user_id).first_name if post.user_id%> wrote:
+    <%= post.post_body %></li>
+<% end %>
 </div>
 
