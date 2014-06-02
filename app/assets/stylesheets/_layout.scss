@@ -37,7 +37,6 @@ html {
   min-height: 350px;
   margin: 0 auto;
   padding-bottom:4em;
-//  padding-bottom: 50px;
 }
 
 .inner_container {
@@ -63,8 +62,29 @@ html {
   color: #FF9900
 }
 
+.button_default {
+  font-size: .9em;
+  background-color: #FF9900;
+  text-decoration: none;
+  padding: .6em;
+  color: black;
+  border: 2px outset buttonface;
+  margin: auto;
+}
+
+.centered_link_container {
+  width: 100%;
+  text-align: center;
+  margin-top: 2.5em;
+}
+
 .error {
   color: red;
+}
+
+.registration_error_message {
+  text-align: center;
+  margin-top: 30px;
 }
 
 ul {

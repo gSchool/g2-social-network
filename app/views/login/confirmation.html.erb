@@ -1,2 +1,7 @@
-Please check your email to confirm registration
-<%=link_to("Resend confirmation email to #{@user.email}", resend_confirmation_path)%>
+<p class="registration_error_message">
+  Your registration is not yet confirmed.
+  Please check your email to confirm registration or resend the email to <%= @user.email %>:
+</p>
+<div class="centered_link_container">
+  <%= link_to("Resend Confirmation Email", resend_confirmation_path, :class => "button_default") %>
+</div>

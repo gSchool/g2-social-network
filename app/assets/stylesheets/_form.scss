@@ -1,16 +1,13 @@
 form label {
   display: inline;
-  //  min-width: 175px;
   width: 33%;
   float: left;
   font-size: 1.15em;
 }
 
 form input {
-  //  min-width: 175px;
   width: 66%;
   padding: .6em;
-
 }
 
 .field_with_errors input {
@@ -21,9 +18,11 @@ form input {
   max-width: 33em;
   min-width: 25em;
   margin: 0 auto;
+
   h2 {
     margin-left: 33%;
   }
+
   input[type="submit"] {
     margin-left: 52%;
     width: 10em;

@@ -46,7 +46,7 @@ feature 'User can create an account' do
       fill_in 'Password', with: 'hello12345'
       click_button 'Login'
       expect(page).to have_content "Please check your email to confirm registration"
-      click_link "Resend confirmation email to #{user.email}"
+      click_link "Resend Confirmation Email"
       expect(page).to have_content "Email has been sent to #{user.email}. Please check your email to confirm"
 
       visit "/confirm/#{user.id}"
