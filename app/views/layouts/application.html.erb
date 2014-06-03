@@ -18,7 +18,7 @@
           <%= link_to current_user.email, user_path(session[:id]) %>
           <%= link_to "Logout", session_path, method: :delete, class:"logout" %>
         <% else %>
-          <a href="/users/new" class="register">Register</a>
+          <a href="/registrations/new" class="register">Register</a>
           <a href="/login" class="login">Login</a>
         <% end %>
       </div>
