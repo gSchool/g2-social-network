@@ -1,10 +1,16 @@
 class PostsController < ApplicationController
 
+  include ProfileMethods
+
   def create
     @post = Post.new(post_params)
+    user = User.find(params[:user_id])
     @post.user_id = params[:user_id]
-    @post.save!
-    redirect_to user_path(current_user)
+    if @post.save
+      redirect_to user_path(user)
+    else
+      render_profile_page(params[:user_id])
+    end
   end
 
   private

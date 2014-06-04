@@ -3,6 +3,8 @@ require 'carrierwave/orm/activerecord'
 class User < ActiveRecord::Base
   mount_uploader :profile_pic, ProfilePictureUploader
 
+  has_many :posts
+
   has_secure_password
 
   validates :first_name, presence: true

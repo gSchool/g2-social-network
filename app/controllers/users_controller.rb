@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  include ProfileMethods
+
   before_action :is_user_logged_in?, except: [:send_confirmation_email, :confirm]
 
   def index
@@ -9,9 +11,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
     @post = Post.new
-    @posts = Post.all
+    render_profile_page(params[:id])
   end
 
   def update

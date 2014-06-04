@@ -4,11 +4,9 @@
     <p><%= flash[:failed_login] %></p>
   </div>
   <%= form_tag :controller => :sessions, :action => :create do %>
-      <ul>
-        <li><%= label_tag :email %><%= text_field_tag :email %></li>
-        <li><%= label_tag :password %><%= password_field_tag :password %></li>
-        <li><%= submit_tag 'Login', :id => 'login_submit' %></li>
-      </ul>
+        <p><%= label_tag :email, nil, class: "registration_label" %><%= text_field_tag :email %></p>
+        <p><%= label_tag :password, nil, class: "registration_label" %><%= password_field_tag :password %></p>
+        <p><%= submit_tag 'Login', :id => 'login_submit' %></p>
   <% end %>
 </div>
 
