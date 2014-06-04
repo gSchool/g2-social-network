@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature 'User login' do
+feature 'User confirmations' do
 
   before :each do
     User.create(

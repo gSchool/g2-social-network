@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class PostsController < LoggedInController
 
   include ProfileMethods
 
