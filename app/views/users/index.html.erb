@@ -1,48 +1,12 @@
 <div class="friend_container">
   <h2>Friends</h2>
   <ul class="user_list">
-    <% @users.each do |user| %>
-      <% if @graph.are_friends?(current_user.id, user.id) %>
-        <li class="user">
-          <div class="user_image">
-            <% if user.profile_pic? %>
-              <%= image_tag(user.profile_pic.thumb) %>
-            <% else %>
-              <img src="<%= image_path "person_placeholder.png" %>" height="100px">
-            <% end %>
-          </div>
-          <div class="user_name"><%= user.first_name %> <%= user.last_name %></div>
-          <div class="friend_button">
-            <%= render 'users/unfriend_form', :user => user %>
-          </div>
-        </li>
-      <% end %>
-    <% end %>
+    <%= render partial: 'users/user', collection: @list_of_friends, locals: {is_friend: true}   %>
   </ul>
 </div>
 <div class="non_friend_container">
   <h2>Make Some Friends</h2>
   <ul class="user_list">
-    <% @users.each do |user| %>
-      <% if !@graph.are_friends?(current_user.id, user.id) %>
-        <li class="user">
-          <div class="user_image">
-            <% if user.profile_pic? %>
-              <%= image_tag(user.profile_pic.thumb) %>
-            <% else %>
-              <img src="<%= image_path "person_placeholder.png" %>" height="100px">
-            <% end %>
-          </div>
-          <div class="user_name"><%= user.first_name %> <%= user.last_name %></div>
-          <div class="friend_button">
-            <% if @graph.friendship_pending?(current_user.id, user.id) %>
-              <p>Pending</p>
-            <% else %>
-              <%= render 'users/add_friend_form', :user => user %>
-            <% end %>
-          </div>
-        </li>
-      <% end %>
-    <% end %>
+    <%= render partial: 'users/user', collection: @list_of_non_friends, locals: {is_friend: false}  %>
   </ul>
 </div>

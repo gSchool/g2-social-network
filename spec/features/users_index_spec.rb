@@ -3,8 +3,6 @@ require 'spec_helper'
 feature "Users interact with site" do
 
   before do
-    DatabaseCleaner.clean
-    ActionMailer::Base.deliveries.clear
     @ellie = User.create!(
       first_name: 'Ellie',
       last_name: 'S',
@@ -42,7 +40,9 @@ feature "Users interact with site" do
     click_button 'Login'
 
     expect(page).to have_content "Bebe Peng"
+    expect(page).to have_content "Add Friend"
     expect(page).to have_content "Seth M"
+    expect(page).to have_content "Add Friend"
   end
 
   scenario "only logged in users can view all users" do
@@ -94,8 +94,14 @@ feature "Users interact with site" do
 
     visit "/confirm-friendships/#{seth.id}/#{@ellie.id}"
 
+    click_on 'Logout'
+    click_on 'Login'
+    fill_in 'Email', with: 'elli@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
+
     within('.friend_container') do
-      expect(page).to have_text('Ellie')
+      expect(page).to have_text('Seth M')
       expect(page).to have_button('Unfriend')
     end
 

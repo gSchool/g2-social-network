@@ -13,6 +13,10 @@ class Graph
     friendship.update(pending: false)
   end
 
+  def friends_for(user)
+    Friendship.where(user_id: user.id, pending: false).map{|friendship| User.find(friendship.friend_id)}
+  end
+
   def are_friends?(user1_id, user2_id)
     friendship = find_friendship(user1_id, user2_id)
     friendship.present? && !friendship_pending?(user1_id, user2_id)

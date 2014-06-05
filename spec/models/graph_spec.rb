@@ -7,9 +7,8 @@ describe Graph do
     graph = Graph.new
 
     expect{graph.add_friendship(mike.id, seth.id)}.to change{Friendship.all.length}.by(1)
+    expect(graph.friends_for(mike)).to match_array []
     last_friendship = Friendship.last
-    expect(last_friendship.user_id).to eq(mike.id)
-    expect(last_friendship.friend_id).to eq(seth.id)
     expect(last_friendship.pending?).to eq true
   end
 
@@ -19,7 +18,7 @@ describe Graph do
     graph = Graph.new
     graph.add_friendship(mike.id, seth.id)
     graph.confirm_friendship(mike.id, seth.id)
-    expect(graph.find_friendship(mike.id, seth.id).pending?).to eq false
+    expect(graph.friends_for(mike)).to match_array [seth]
   end
 
   it "friendships can only be created between users with id's" do
