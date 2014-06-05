@@ -9,7 +9,7 @@
   You have a new friend request from <%= @requestor.first_name%> <%= @requestor.last_name %>.<br>
 </p>
 <p>
-  To confirm your friend request, just follow this link: <%= link_to "Confirm Friendship", users_url(@user) %>
+  To confirm your friend request, just follow this link: <%= link_to "Confirm Friendship", confirm_friendships_url(@friend.id, @requestor.id) %>
 </p>
 <p>Have a great day!</p>
 </body>

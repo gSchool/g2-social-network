@@ -2,7 +2,7 @@
   <h2>Friends</h2>
   <ul class="user_list">
     <% @users.each do |user| %>
-      <% if @graph.are_friends?(@current_user.id, user.id) %>
+      <% if @graph.are_friends?(current_user.id, user.id) %>
         <li class="user">
           <div class="user_image">
             <% if user.profile_pic? %>
@@ -13,7 +13,6 @@
           </div>
           <div class="user_name"><%= user.first_name %> <%= user.last_name %></div>
           <div class="friend_button">
-            >>>>>>> 9e56924bd85811c2d59996f485f665a852733ea0
             <%= render 'users/unfriend_form', :user => user %>
           </div>
         </li>
@@ -25,7 +24,7 @@
   <h2>Make Some Friends</h2>
   <ul class="user_list">
     <% @users.each do |user| %>
-      <% if !@graph.are_friends?(@current_user.id, user.id) %>
+      <% if !@graph.are_friends?(current_user.id, user.id) %>
         <li class="user">
           <div class="user_image">
             <% if user.profile_pic? %>

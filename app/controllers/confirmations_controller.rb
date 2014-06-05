@@ -16,4 +16,9 @@ class ConfirmationsController < ApplicationController
     redirect_to '/sessions/new', notice: "Your email has been confirmed. You can now log in"
   end
 
+  def confirm_friendships
+    Graph.new.confirm_friendship(params[:friend_id], params[:requestor_id])
+    redirect_to users_path
+  end
+
 end
