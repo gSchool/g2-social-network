@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   mount_uploader :profile_pic, ProfilePictureUploader
 
   has_many :posts
+  has_many :friendships
 
   has_secure_password
 

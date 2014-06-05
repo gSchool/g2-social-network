@@ -1,0 +1,15 @@
+<% if !@graph.are_friends?(@current_user.id, non_friend.id) %>
+  <li class="user">
+    <div class="user_image">
+      <% if non_friend.profile_pic? %>
+        <%= image_tag(non_friend.profile_pic.thumb) %>
+      <% else %>
+        <img src="<%= image_path "person_placeholder.png" %>" height="100px">
+      <% end %>
+    </div>
+    <div class="user_name"><%= non_friend.first_name %> <%= non_friend.last_name %></div>
+    <div class="friend_button">
+      <%= render 'users/add_friend_form', :user => non_friend %>
+    </div>
+  </li>
+<% end %>

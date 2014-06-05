@@ -41,18 +41,17 @@ li.user:nth-child(even) {
   }
 }
 
-.friend_container {
+.friend_container, .non_friend_container {
   width: 45%;
-  float: left;
   h2 {
     text-align: center;
   }
 }
 
+.friend_container {
+  float: left;
+}
+
 .non_friend_container {
-  width: 45%;
   float: right;
-  h2 {
-    text-align: center;
-  }
 }
