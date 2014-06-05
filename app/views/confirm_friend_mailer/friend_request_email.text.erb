@@ -1,0 +1,7 @@
+Hey, <%= @friend.first_name %>!
+
+You have a new friend request from <%= @requestor.first_name %> <%= @requestor.last_name %>.
+
+To confirm your friend request, just follow this link: <%= link_to "Confirm Friendship", users_url(@users) %>
+
+Have a great day!

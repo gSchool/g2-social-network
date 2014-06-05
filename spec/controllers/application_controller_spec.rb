@@ -5,6 +5,7 @@ describe ApplicationController do
     it "returns nil if a user is not logged in" do
       expect(controller.current_user).to be_nil
     end
+
     it "returns the user if user is logged in" do
       user = create_user
       controller.log_user_in(user)

@@ -12,7 +12,9 @@
         </div>
         <div class="user_name"><%= user.first_name %> <%= user.last_name %></div>
         <div class="friend_button">
-          <% if @graph.are_friends?(@current_user.id, user.id) %>
+          <% if @graph.friendship_pending?(current_user.id, user.id) %>
+            <p>Pending</p>
+          <% elsif @graph.are_friends?(current_user.id, user.id) %>
             <%= render 'users/unfriend_form', :user => user %>
           <% else %>
             <%= render 'users/add_friend_form', :user => user %>

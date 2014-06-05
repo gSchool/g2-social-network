@@ -25,11 +25,11 @@ Thanks for joining and have a great day!
     expect(mail.subject).to eq("Welcome to Bradtke's Book!")
   end
 
-  it 'renders the receiver email' do
+  it 'renders the receiver email in the TO field' do
     expect(mail.to).to eq([user.email])
   end
 
-  it 'renders the sender email' do
+  it 'renders the sender email in the FROM field' do
     expect(mail.from).to eq(["confirmation@bradtkesbook.com"])
   end
 end

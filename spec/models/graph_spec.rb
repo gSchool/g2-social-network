@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Graph do
-  it "creates friendships between users" do
+  it "creates pending friendships between users" do
     mike = create_user(email: 'mike@example.com')
     seth = create_user(email: 'seth@example.com')
     graph = Graph.new
@@ -10,7 +10,16 @@ describe Graph do
     last_friendship = Friendship.last
     expect(last_friendship.user_id).to eq(mike.id)
     expect(last_friendship.friend_id).to eq(seth.id)
+    expect(last_friendship.pending?).to eq true
+  end
 
+  it "should confirm pending friendships" do
+    mike = create_user(email: 'mike@example.com')
+    seth = create_user(email: 'seth@example.com')
+    graph = Graph.new
+    graph.add_friendship(mike.id, seth.id)
+    graph.confirm_friendship(mike.id, seth.id)
+    expect(graph.find_friendship(mike.id, seth.id).pending?).to eq false
   end
 
   it "friendships can only be created between users with id's" do
@@ -24,7 +33,8 @@ describe Graph do
     graph = Graph.new
     expect(graph.are_friends?(mike.id, seth.id)).to eq false
     graph.add_friendship(mike.id, seth.id)
-    expect(graph.are_friends?(mike.id, seth.id)).to eq true
+    expect(graph.are_friends?(mike.id, seth.id)).to eq false
+    graph.confirm_friendship(mike.id, seth.id)
     expect(graph.are_friends?(seth.id, mike.id)).to eq true
   end
 
@@ -34,8 +44,10 @@ describe Graph do
     graph = Graph.new
     expect(graph.are_friends?(mike.id, seth.id)).to eq false
     graph.add_friendship(mike.id, seth.id)
+    graph.confirm_friendship(mike.id, seth.id)
     expect(graph.are_friends?(mike.id, seth.id)).to eq true
     graph.remove_friendship(mike.id, seth.id)
     expect(graph.are_friends?(mike.id, seth.id)).to eq false
   end
+
 end

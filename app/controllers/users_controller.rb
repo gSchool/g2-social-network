@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   def index
     @users = User.all_except(session[:id])
     @graph = Graph.new
-    @current_user = current_user
   end
 
   def new

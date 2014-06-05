@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Hey, <%= @friend.first_name %>!</h1>
+<p>
+  You have a new friend request from <%= @requestor.first_name%> <%= @requestor.last_name %>.<br>
+</p>
+<p>
+  To confirm your friend request, just follow this link: <%= link_to "Confirm Friendship", users_url(@user) %>
+</p>
+<p>Have a great day!</p>
+</body>
+</html>
