@@ -25,7 +25,7 @@ Hey, Nate!
 
 You have a new friend request from Gerard Cote.
 
-To confirm your friend request, just follow this link: <a href="http://localhost:3000/users">Confirm Friendship</a>
+To confirm your friend request, just follow this link: <a href="http://localhost:3000/confirm-friendships/#{friend.id}/#{requestor.id}">Confirm Friendship</a>
 
 Have a great day!
 INPUT
