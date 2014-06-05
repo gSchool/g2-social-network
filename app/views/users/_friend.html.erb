@@ -1,8 +1,8 @@
-<% if @graph.are_friends?(@current_user.id, friend.id) %>
+<% @list_of_friends.each do |friend| %>
   <li class="user">
     <div class="user_image">
       <% if friend.profile_pic? %>
-        <%= image_tag(user.profile_pic.thumb) %>
+        <%= image_tag(friend.profile_pic.thumb) %>
       <% else %>
         <img src="<%= image_path "person_placeholder.png" %>" height="100px">
       <% end %>

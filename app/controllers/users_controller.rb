@@ -4,8 +4,9 @@ class UsersController < LoggedInController
 
   def index
     @users = User.all_except(session[:id])
-    @graph = Graph.new
     @current_user = current_user
+    @list_of_friends = @current_user.friendships.map { |friend| User.find(friend[:friend_id])}
+    @list_of_non_friends = @users.select { |user| !@list_of_friends.include? user }
   end
 
   def show

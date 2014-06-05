@@ -1,12 +1,13 @@
 <div class="friend_container">
   <h2>Friends</h2>
   <ul class="user_list">
-    <%= render partial: "users/friend", collection: @users, as: :friend %>
+    <%= render 'users/friend' %>
+
   </ul>
 </div>
 <div class="non_friend_container">
   <h2>Make Some Friends</h2>
   <ul class="user_list">
-    <%= render partial: "users/non_friend", collection: @users, as: :non_friend %>
+    <%= render 'users/non_friend'  %>
   </ul>
 </div>
