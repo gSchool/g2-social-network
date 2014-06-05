@@ -18,19 +18,19 @@
 
   <%= form_for @user, url: "/users" do |f| %>
 
-    <p><%= f.label :first_name %>
+    <p><%= f.label :first_name, class: "registration_label" %>
       <%= f.text_field :first_name %></p>
 
-    <p><%= f.label :last_name %>
+    <p><%= f.label :last_name, class: "registration_label" %>
       <%= f.text_field :last_name %></p>
 
-    <p><%= f.label :email %>
+    <p><%= f.label :email, class: "registration_label" %>
       <%= f.text_field :email %></p>
 
-    <p><%= f.label :password %>
+    <p><%= f.label :password, class: "registration_label" %>
       <%= f.password_field :password %></p>
 
-    <p><%= f.label :password_confirmation, "Confirm password" %>
+    <p><%= f.label :password_confirmation, "Confirm password", class: "registration_label" %>
       <%= f.password_field :password_confirmation %></p>
 
     <p><%= f.submit "Create an Account" %></p>

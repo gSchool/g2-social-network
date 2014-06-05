@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
 
   root 'welcome#index'
-  resources :users
-  get 'confirm/:id', to: 'users#confirm', as: :confirmation
-  get 'login/confirmation/:id', to: 'login#confirmation'
-  get 'login/confirmation/send/:id', to: 'users#send_confirmation_email', as: :resend_confirmation
-  resources :friendships
-  resources :login
+  resources :users, except: [:new, :create] do
+    resources :posts
+  end
+  get '/registrations/new', to: 'registrations#new'
+  post '/users', to: 'registrations#create'
+  get '/confirm/:id', to: 'confirmations#update', as: :confirmation
+  get '/confirmations/confirmation/:id', to: 'confirmations#unconfirmed_registration'
+  get '/confirmations/confirmation/send/:id', to: 'confirmations#send_confirmation_email', as: :resend_confirmation
+  get '/confirmations', to: 'sessions#new'
+  get '/login', to: 'sessions#new'
 
-  resource :session, only: [:destroy, :create]
+  resources :friendships
+  #resources :login
+
+  resource :sessions
 end

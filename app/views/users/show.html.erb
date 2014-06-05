@@ -1,4 +1,4 @@
-<div id="profile_container">
+<div id="profile_container" class="one_half">
   <h2><%= @user.first_name %> <%= @user.last_name %>'s Profile</h2>
   <%= image_tag((@user.profile_pic), :class => "profile_pic") %>
   <%= form_for @user do |f| %>
@@ -18,10 +18,29 @@
       <tr>
         <td><%= f.label :profile_pic %></td>
         <td><%= f.file_field :profile_pic %>
-          <%= f.submit "Upload Picture", class: "upload_button" %>
+          <%= f.submit "Upload Picture", class: "zero_margin_button" %>
         </td>
       </tr>
     </table>
   <% end %>
+</div>
+
+<div id="posts_container" class="one_half">
+  <h2><%= @user.first_name %>'s Wall</h2>
+  <%= form_for([@user, @post]) do |f| %>
+    <% if @post.errors %>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= f.label :post_body, "What's on your mind?" %>
+    <%= f.text_area :post_body %>
+    <%= f.submit "Post", class: "zero_margin_button" %>
+  <% end %>
+  <ul>
+    <%= render partial: "users/post", collection: @posts %>
+  </ul>
 </div>
 

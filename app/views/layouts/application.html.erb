@@ -16,9 +16,9 @@
         <% if current_user %>
           <%= link_to "All Users", users_path %>
           <%= link_to current_user.email, user_path(session[:id]) %>
-          <%= link_to "Logout", session_path, method: :delete, class:"logout" %>
+          <%= link_to "Logout", sessions_path, method: :delete, class:"logout" %>
         <% else %>
-          <a href="/users/new" class="register">Register</a>
+          <a href="/registrations/new" class="register">Register</a>
           <a href="/login" class="login">Login</a>
         <% end %>
       </div>

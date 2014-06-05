@@ -40,3 +40,19 @@ li.user:nth-child(even) {
     font-size: 1em;
   }
 }
+
+.friend_container {
+  width: 45%;
+  float: left;
+  h2 {
+    text-align: center;
+  }
+}
+
+.non_friend_container {
+  width: 45%;
+  float: right;
+  h2 {
+    text-align: center;
+  }
+}

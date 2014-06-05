@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature "Users interact with site" do
-  before :each do
 
     @ellie = User.create(
       first_name: 'Ellie',
@@ -162,5 +161,27 @@ feature "Users interact with site" do
     fill_in 'Password', with: 'hello12345'
     click_button 'Login'
     expect(page).to have_css('img', visible: 'unicorn_cat.jpg')
+  end
+
+  scenario 'User can see friends in the left hand column and users their not friends with on the right' do
+    visit '/'
+    click_on 'Login'
+    fill_in 'Email', with: 'seth@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
+
+    graph = Graph.new
+    graph.add_friendship(@seth.id, @bebe.id)
+
+    visit page.current_path
+
+    within '.friend_container' do
+      expect(page).to have_content('Bebe Peng')
+    end
+
+    within '.non_friend_container' do
+      expect(page).to have_content('Ellie S')
+    end
+
   end
 end
