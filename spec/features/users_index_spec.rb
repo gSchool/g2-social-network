@@ -66,17 +66,25 @@ feature "Users interact with site" do
     fill_in 'Password', with: 'hello12345'
     click_button 'Login'
 
-    expect(page).to_not have_content 'Unfriend'
+    within('.non_friend_container') do
+      expect(page).to have_content 'Seth M'
+      expect(page).to have_content 'Add Friend'
+    end
+
     expect(ActionMailer::Base.deliveries.length).to eq 0
 
-    within '.body_container' do
+    within '.non_friend_container' do
       page.first(:button, 'Add Friend').click
     end
 
     expect(ActionMailer::Base.deliveries.length).to eq 1
 
     expect(page).to have_content 'Friendship request sent'
-    expect(page).to have_content 'Pending'
+
+    within('.non_friend_container') do
+      expect(page).to have_content 'Seth M'
+      expect(page).to have_content 'Pending'
+    end
 
     click_on 'Logout'
     click_on 'Login'
@@ -86,8 +94,11 @@ feature "Users interact with site" do
 
     visit "/confirm-friendships/#{seth.id}/#{@ellie.id}"
 
-    expect(page).to have_content 'All Users'
-    expect(page).to have_button('Unfriend')
+    within('.friend_container') do
+      expect(page).to have_text('Ellie')
+      expect(page).to have_button('Unfriend')
+    end
+
   end
 
   scenario "user can remove a friend" do
