@@ -118,26 +118,29 @@ feature "Users interact with site" do
       confirmation: true
     )
 
+    graph = Graph.new
+    graph.add_friendship(@ellie.id, seth.id)
+    graph.confirm_friendship(@ellie.id, seth.id)
+
     visit '/'
     click_on 'Login'
     fill_in 'Email', with: 'elli@example.com'
     fill_in 'Password', with: 'hello12345'
     click_button 'Login'
 
-    expect(page).to_not have_content 'Unfriend'
-
-    graph = Graph.new
-    graph.add_friendship(@ellie.id, seth.id)
-    graph.confirm_friendship(@ellie.id, seth.id)
-
-    visit page.current_path
-
-    within '.body_container' do
+    within '.friend_container' do
+      expect(page).to have_content 'Seth M'
       page.first(:button, 'Unfriend').click
     end
     expect(page).to have_content 'Friend removed'
-    expect(page).to have_content 'Add Friend'
-    expect(page).to_not have_content 'Unfriend'
+    within '.non_friend_container' do
+      expect(page).to have_content 'Seth M'
+      expect(page).to have_content 'Add Friend'
+    end
+
+    within '.friend_container' do
+      expect(page).to have_no_content 'Seth M'
+    end
   end
 
   scenario "user can see photos of all friends" do
