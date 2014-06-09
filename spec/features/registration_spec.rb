@@ -41,7 +41,7 @@ feature 'User can create an account' do
         password: 'hello12345',
         password_confirmation: 'hello12345'
       )
-      visit '/confirmations'
+      visit '/login'
       fill_in 'Email', with: 'bebe2@example.com'
       fill_in 'Password', with: 'hello12345'
       click_button 'Login'

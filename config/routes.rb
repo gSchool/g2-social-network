@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get '/confirm/:id', to: 'confirmations#update', as: :confirmation
   get '/confirmations/confirmation/:id', to: 'confirmations#unconfirmed_registration'
   get '/confirmations/confirmation/send/:id', to: 'confirmations#send_confirmation_email', as: :resend_confirmation
-  get '/confirmations', to: 'sessions#new'
   get '/login', to: 'sessions#new'
   get '/confirm-friendships/:friend_id/:requestor_id', to: 'confirmations#confirm_friendships', as: :confirm_friendships
 
