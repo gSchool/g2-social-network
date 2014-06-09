@@ -37,6 +37,7 @@ html {
   min-height: 350px;
   margin: 0 auto;
   padding-bottom:4em;
+  overflow: hidden;
 }
 
 .inner_container {
@@ -99,7 +100,6 @@ footer {
   height:3em;
   position:absolute;
   bottom:0;
-  width:100%;
 }
 
 
