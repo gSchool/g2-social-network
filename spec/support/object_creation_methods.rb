@@ -13,3 +13,17 @@ def new_user(attributes= {})
   }
   User.new(defaults.merge(attributes))
 end
+
+def create_post(user_id, attributes = {})
+  user = new_post(user_id, attributes)
+  user.save!
+  user
+end
+
+def new_post(user_id, attributes= {})
+  defaults = {
+    user_id: user_id,
+    post_body: 'post body',
+  }
+  Post.new(defaults.merge(attributes))
+end

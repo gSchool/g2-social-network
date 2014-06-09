@@ -214,4 +214,58 @@ feature "Users interact with site" do
     end
 
   end
+
+  scenario 'a user can view their own posts and the posts of users they are friends with' do
+    seth = User.create!(
+      first_name: 'Seth',
+      last_name: 'M',
+      email: 'seth@example.com',
+      password: 'hello12345',
+      password_confirmation: 'hello12345',
+      confirmation: true
+    )
+
+    bebe = User.create!(
+      first_name: 'Bebe',
+      last_name: 'Peng',
+      email: 'bebe@example.com',
+      password: 'hello12345',
+      password_confirmation: 'hello12345',
+      confirmation: true
+    )
+
+    graph = Graph.new
+    graph.add_friendship(seth.id, bebe.id)
+    graph.confirm_friendship(seth.id, bebe.id)
+
+    visit '/'
+    click_on 'Login'
+    fill_in 'Email', with: 'seth@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
+    click_on 'seth@example.com'
+    fill_in 'post[post_body]', with: 'hello'
+    click_on 'Post'
+    click_on 'Logout'
+
+    click_on 'Login'
+    fill_in 'Email', with: 'elli@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
+    click_on 'elli@example.com'
+    fill_in 'post[post_body]', with: 'goodbye'
+    click_on 'Post'
+    click_on 'Logout'
+
+    click_on 'Login'
+    fill_in 'Email', with: 'bebe@example.com'
+    fill_in 'Password', with: 'hello12345'
+    click_button 'Login'
+    click_on 'bebe@example.com'
+    fill_in 'post[post_body]', with: 'cya later'
+    click_on 'Post'
+    expect(page).to have_content 'hello'
+    expect(page).to have_content 'cya later'
+    expect(page).to_not have_content 'goodbye'
+  end
 end

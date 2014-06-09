@@ -28,16 +28,25 @@ class Graph
     find_friendship(user1_id, user2_id).destroy
   end
 
+  def friendship_pending?(user1_id, user2_id)
+    friendship = find_friendship(user1_id, user2_id)
+    !!friendship && friendship.pending?
+  end
+
+  def posts_for(user)
+    friends = friends_for(user)
+    user_posts = Post.where(user_id: user.id)
+    friend_posts = Post.where(user_id: friends.map { |friend| friend.id })
+    user_posts.concat(friend_posts)
+  end
+
+  private
+
   def find_friendship(user1_id, user2_id)
     Friendship.where(
       "user_id = :user_id and friend_id = :friend_id OR user_id = :friend_id and friend_id = :user_id",
       user_id: user1_id,
       friend_id: user2_id
     ).first
-  end
-
-  def friendship_pending?(user1_id, user2_id)
-    friendship = find_friendship(user1_id, user2_id)
-    !!friendship && friendship.pending?
   end
 end
