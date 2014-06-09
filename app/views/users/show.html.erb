@@ -1,6 +1,10 @@
 <div id="profile_container" class="one_half">
   <h2><%= @user.first_name %> <%= @user.last_name %>'s Profile</h2>
-  <%= image_tag((@user.profile_pic), :class => "profile_pic") %>
+
+  <div class="user_image">
+      <%= image_tag(UserHelper.profile_pic(@user), :class => "profile_pic") %>
+  </div>
+
   <%= form_for @user do |f| %>
     <table>
       <tr>
