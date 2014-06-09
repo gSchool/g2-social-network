@@ -12,7 +12,8 @@ class UsersController < LoggedInController
 
   def show
     @post = Post.new
-    render_profile_page(params[:id])
+    user = User.find(params[:id])
+    render_profile_page(user)
   end
 
   def update

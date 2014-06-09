@@ -5,11 +5,11 @@ class PostsController < LoggedInController
   def create
     @post = Post.new(post_params)
     user = User.find(params[:user_id])
-    @post.user_id = params[:user_id]
+    @post.user_id = user.id
     if @post.save
       redirect_to user_path(user)
     else
-      render_profile_page(params[:user_id])
+      render_profile_page(user)
     end
   end
 
