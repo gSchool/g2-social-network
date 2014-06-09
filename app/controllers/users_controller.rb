@@ -18,8 +18,12 @@ class UsersController < LoggedInController
 
   def update
     @user = current_user
-    @user.profile_pic = params[:user][:profile_pic]
-    @user.save
+    if params[:user]
+      @user.profile_pic = params[:user][:profile_pic]
+      @user.save
+    else
+      flash[:notice] = "You must select a file to upload!"
+    end
     redirect_to user_path
   end
 
