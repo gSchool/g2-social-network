@@ -3,6 +3,7 @@ require 'spec_helper'
 feature "Users interact with site" do
 
   before do
+    ActionMailer::Base.deliveries.clear
     @ellie = User.create!(
       first_name: 'Ellie',
       last_name: 'S',
