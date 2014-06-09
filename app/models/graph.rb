@@ -14,7 +14,9 @@ class Graph
   end
 
   def friends_for(user)
-    Friendship.where(user_id: user.id, pending: false).map{|friendship| User.find(friendship.friend_id)}
+    find_by_user_id = Friendship.where(user_id: user.id, pending: false).map { |friendship| User.find(friendship.friend_id) }
+    find_by_friend_id = Friendship.where(friend_id: user.id, pending: false).map { |friendship| User.find(friendship.user_id) }
+    find_by_user_id.concat(find_by_friend_id)
   end
 
   def are_friends?(user1_id, user2_id)
