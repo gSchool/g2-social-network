@@ -1,11 +1,9 @@
 <li class="user">
+
   <div class="user_image">
-    <% if user.profile_pic? %>
-      <%= image_tag(user.profile_pic.thumb) %>
-    <% else %>
-      <img src="<%= image_path "person_placeholder.png" %>" height="100px">
-    <% end %>
+    <%= image_tag(UserHelper.profile_pic(user), :class => "profile_thumb") %>
   </div>
+
   <div class="user_name"><%= user.first_name %> <%= user.last_name %></div>
   <div class="friend_button">
     <% if is_friend %>
