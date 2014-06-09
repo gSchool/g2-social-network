@@ -22,6 +22,12 @@ feature 'User can see their details on their profiles page' do
     expect(page).to have_css('img', visible: 'unicorn_cat.jpg')
   end
 
+  scenario 'User sees errors if haven\'t selected picture to upload' do
+    click_on 'example@example.com'
+    click_on 'Upload Picture'
+    expect(page).to have_content('You must select a file to upload!')
+  end
+
   scenario 'User can click on link in nav to see all users' do
     click_on 'All Users'
     expect(page).to have_content 'All Users'
