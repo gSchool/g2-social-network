@@ -19,7 +19,7 @@ class Graph
 
   def are_friends?(user1_id, user2_id)
     friendship = find_friendship(user1_id, user2_id)
-    friendship.present? && !friendship_pending?(user1_id, user2_id)
+    friendship.present? && !friendship.pending?
   end
 
   def remove_friendship(user1_id, user2_id)

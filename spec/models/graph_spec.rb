@@ -21,6 +21,16 @@ describe Graph do
     expect(graph.friends_for(mike)).to match_array [seth]
   end
 
+  it "can tell if two users friendship is pending or not" do
+    mike = create_user(email: 'mike@example.com')
+    seth = create_user(email: 'seth@example.com')
+    graph = Graph.new
+    graph.add_friendship(mike.id, seth.id)
+    expect(graph.friendship_pending?(mike.id, seth.id)).to eq true
+    graph.confirm_friendship(mike.id, seth.id)
+    expect(graph.friendship_pending?(mike.id, seth.id)).to eq false
+  end
+
   it "friendships can only be created between users with id's" do
     graph = Graph.new
     expect(graph.add_friendship(0, 0)).to eq false
