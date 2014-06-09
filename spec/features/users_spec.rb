@@ -95,11 +95,6 @@ feature "Users interact with site" do
 
     visit "/confirm-friendships/#{seth.id}/#{@ellie.id}"
 
-    within('.friend_container') do
-      expect(page).to have_text('Ellie S')
-      expect(page).to have_button('Unfriend')
-    end
-
     click_on 'Logout'
     click_on 'Login'
     fill_in 'Email', with: 'elli@example.com'
