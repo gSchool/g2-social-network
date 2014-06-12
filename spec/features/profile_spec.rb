@@ -28,11 +28,6 @@ feature 'User can see their details on their profiles page' do
     expect(page).to have_content('You must select a file to upload!')
   end
 
-  scenario 'User will see default silhouette pic before uploading a pic on their profile page' do
-    click_on 'example@example.com'
-    expect(page).to have_selector("img[src$='person_placeholder.png']")
-  end
-
   scenario 'User can click on link in nav to see all users' do
     click_on 'All Users'
     expect(page).to have_content 'All Users'
