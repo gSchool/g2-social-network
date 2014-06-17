@@ -10,7 +10,7 @@ def new_user(attributes = {})
     last_name: 'Cote',
     email: 'gerardcote@example.com',
     password: 'hello12345',
-    password_confirmation: 'hello12345'
+    confirmation: true
   }
   User.new(defaults.merge(attributes))
 end

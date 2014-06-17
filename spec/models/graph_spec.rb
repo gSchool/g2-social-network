@@ -68,7 +68,7 @@ describe Graph do
                                               updated_at: updated_at
                                             ),
                                             new_post(
-
+                                              @mike.id,
                                               id: post2.id,
                                               post_body: post2.post_body,
                                               created_at: created_at,
