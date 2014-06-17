@@ -60,13 +60,15 @@ describe Graph do
     post3 = create_post(@seth.id, post_body: "I am Seth", created_at: created_at, updated_at: updated_at)
 
     expect(@graph.posts_for(@seth)).to eq [
-                                            Post.new(
+                                            new_post(
+                                              @mike.id,
                                               id: post3.id,
                                               post_body: post3.post_body,
                                               created_at: created_at,
                                               updated_at: updated_at
                                             ),
-                                            Post.new(
+                                            new_post(
+                                              @mike.id,
                                               id: post2.id,
                                               post_body: post2.post_body,
                                               created_at: created_at,

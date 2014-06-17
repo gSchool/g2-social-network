@@ -4,12 +4,13 @@ def create_user(attributes = {})
   user
 end
 
-def new_user(attributes= {})
+def new_user(attributes = {})
   defaults = {
     first_name: 'Gerard',
     last_name: 'Cote',
     email: 'gerardcote@example.com',
-    password: 'hello12345'
+    password: 'hello12345',
+    confirmation: true
   }
   User.new(defaults.merge(attributes))
 end
@@ -20,7 +21,7 @@ def create_post(user_id, attributes = {})
   user
 end
 
-def new_post(user_id, attributes= {})
+def new_post(user_id, attributes = {})
   defaults = {
     user_id: user_id,
     post_body: 'post body',

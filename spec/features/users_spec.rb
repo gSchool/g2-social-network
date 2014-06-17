@@ -4,40 +4,31 @@ feature "Users interact with site" do
 
   before do
     ActionMailer::Base.deliveries.clear
-    @ellie = User.create!(
+    @ellie = create_user(
       first_name: 'Ellie',
       last_name: 'S',
       email: 'elli@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
   end
 
   scenario "user can view all users" do
 
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
 
-    bebe = User.create!(
+    bebe = create_user(
       first_name: 'Bebe',
       last_name: 'Peng',
       email: 'bebe@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
 
     visit '/'
     click_on 'Login'
     fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: @ellie.password
     click_button 'Login'
 
     expect(page).to have_content "Bebe Peng"
@@ -53,18 +44,15 @@ feature "Users interact with site" do
 
 
   scenario "user can request to add a friend and that friend can confirm" do
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
     visit '/'
     click_on 'Login'
     fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: @ellie.password
     click_button 'Login'
 
     within('.non_friend_container') do
@@ -90,7 +78,7 @@ feature "Users interact with site" do
     click_on 'Logout'
     click_on 'Login'
     fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: seth.password
     click_button 'Login'
 
     visit "/confirm-friendships/#{seth.id}/#{@ellie.id}"
@@ -103,7 +91,7 @@ feature "Users interact with site" do
     click_on 'Logout'
     click_on 'Login'
     fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: @ellie.password
     click_button 'Login'
 
     within('.friend_container') do
@@ -114,13 +102,10 @@ feature "Users interact with site" do
 
   scenario "user can remove a friend" do
 
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
 
     graph = Graph.new
@@ -130,7 +115,7 @@ feature "Users interact with site" do
     visit '/'
     click_on 'Login'
     fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: @ellie.password
     click_button 'Login'
 
     within '.friend_container' do
@@ -149,19 +134,16 @@ feature "Users interact with site" do
   end
 
   scenario "user can see photos of all friends" do
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
 
     visit '/'
     click_on 'Login'
     fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: @ellie.password
     click_button 'Login'
     click_link 'elli@example.com'
     attach_file('Profile pic', Rails.root.join('spec/images/unicorn_cat.jpg'))
@@ -169,34 +151,28 @@ feature "Users interact with site" do
     click_on 'Logout'
     click_on 'Login'
     fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: seth.password
     click_button 'Login'
     expect(page).to have_css('img', visible: 'unicorn_cat.jpg')
   end
 
   scenario 'User can see friends in the left hand column and users they are not friends with on the right' do
-    bebe = User.create!(
+    bebe = create_user(
       first_name: 'Bebe',
       last_name: 'Peng',
       email: 'bebe@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
 
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
 
     visit '/'
     click_on 'Login'
     fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: seth.password
     click_button 'Login'
 
     graph = Graph.new
@@ -216,22 +192,16 @@ feature "Users interact with site" do
   end
 
   scenario 'a user can view their own posts and the posts of users they are friends with' do
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
 
-    bebe = User.create!(
+    bebe = create_user(
       first_name: 'Bebe',
       last_name: 'Peng',
       email: 'bebe@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
-      confirmation: true
     )
 
     graph = Graph.new
@@ -241,7 +211,7 @@ feature "Users interact with site" do
     visit '/'
     click_on 'Login'
     fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: seth.password
     click_button 'Login'
     click_on 'seth@example.com'
     fill_in 'post[post_body]', with: 'hello'
@@ -250,7 +220,7 @@ feature "Users interact with site" do
 
     click_on 'Login'
     fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: @ellie.password
     click_button 'Login'
     click_on 'elli@example.com'
     fill_in 'post[post_body]', with: 'goodbye'
@@ -259,7 +229,7 @@ feature "Users interact with site" do
 
     click_on 'Login'
     fill_in 'Email', with: 'bebe@example.com'
-    fill_in 'Password', with: 'hello12345'
+    fill_in 'Password', with: bebe.password
     click_button 'Login'
     click_on 'bebe@example.com'
     fill_in 'post[post_body]', with: 'cya later'

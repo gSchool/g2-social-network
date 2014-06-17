@@ -34,16 +34,15 @@ feature 'User can create an account' do
 
   context "Email confirmation link" do
     scenario "When a user clicks their unique confirmation link, they are confirmed" do
-      user = User.create(
+      user = create_user(
         first_name: 'Bebe',
         last_name: 'Peng',
         email: 'bebe2@example.com',
-        password: 'hello12345',
-        password_confirmation: 'hello12345'
+        confirmation: false
       )
       visit '/login'
       fill_in 'Email', with: 'bebe2@example.com'
-      fill_in 'Password', with: 'hello12345'
+      fill_in 'Password', with: user.password
       click_button 'Login'
       expect(page).to have_content "Please check your email to confirm registration"
       click_link "Resend Confirmation Email"
@@ -53,7 +52,7 @@ feature 'User can create an account' do
 
       expect(page).to have_content "Your email has been confirmed. You can now log in"
       fill_in 'Email', with: 'bebe2@example.com'
-      fill_in 'Password', with: 'hello12345'
+      fill_in 'Password', with: user.password
       click_button 'Login'
       expect(page).to have_content "Welcome back bebe2@example.com"
     end

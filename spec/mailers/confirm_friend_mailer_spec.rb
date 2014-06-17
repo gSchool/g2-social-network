@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe ConfirmFriendMailer do
   describe 'message when friendship request email is sent' do
-    let(:requestor) { User.create!(:email => 'gerardcote25@example.com', :first_name => 'Gerard', :last_name => 'Cote', :password => 12341234) }
-    let(:friend) { User.create!(:email => 'nate123@example.com', :first_name => 'Nate', :last_name => 'Burt', :password => 56785678) }
+    let(:requestor) { create_user(:email => 'gerardcote25@example.com', :first_name => 'Gerard', :last_name => 'Cote', :password => 12341234) }
+    let(:friend) { create_user(:email => 'nate123@example.com', :first_name => 'Nate', :last_name => 'Burt', :password => 56785678) }
     let(:message) { ConfirmFriendMailer.friend_request_email(requestor, friend) }
 
     it 'comes from the friendships department at bradkes book' do

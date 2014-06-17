@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'User login' do
 
   before :each do
-    User.create(
+    create_user(
       first_name: 'Bebe',
       last_name: 'Peng',
       email: 'bebe@example.com',

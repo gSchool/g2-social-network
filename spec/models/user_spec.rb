@@ -67,8 +67,7 @@ describe User do
   end
 
   it "allows a user to be confirmed" do
-    user = create_user(email: 'ellieee@example.com')
-    expect(user.confirmation).to eq(false)
+    user = create_user(email: 'ellieee@example.com', confirmation: false)
     user.confirm_user
     expect(user.confirmation).to eq(true)
   end
