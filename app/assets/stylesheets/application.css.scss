@@ -12,7 +12,9 @@
  *
  */
 *, *:before, *:after {
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @import "layout";
@@ -21,3 +23,4 @@
 @import "user_portfolio";
 @import "form";
 @import "user_profile";
+@import "messages";

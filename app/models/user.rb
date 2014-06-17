@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
   def confirm_user
     self.update_attributes(confirmation: true)
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

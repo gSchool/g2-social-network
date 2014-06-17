@@ -46,3 +46,18 @@ textarea {
   width: 400px;
   height: 50px;
 }
+
+#new-message {
+  select {
+    width: 33%;
+  }
+  textarea {
+    border: 1px inset lightgray;
+    margin-bottom: 1em;
+    width: 66%;
+    height: 200px;
+  }
+  input[type="submit"] {
+    margin-left: 59%;
+  }
+}

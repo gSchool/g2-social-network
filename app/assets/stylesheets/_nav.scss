@@ -37,6 +37,10 @@ header a {
 #right_nav a {
   text-decoration: none;
   padding: 1em;
+
+  img {
+    height: 27px;
+  }
 }
 
 #right_nav a:hover {
@@ -44,7 +48,7 @@ header a {
   text-decoration: underline;
 }
 
-.register, .login, .logout{
-  margin-right:2em;
-  font-size:1.3em;
+.register, .login, .logout {
+  margin-right: 2em;
+  font-size: 1.3em;
 }

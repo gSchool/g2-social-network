@@ -28,3 +28,7 @@ def new_post(user_id, attributes = {})
   }
   Post.new(defaults.merge(attributes))
 end
+
+def create_friendship(user1, user2)
+  Friendship.create(user_id: user1.id, friend_id: user2.id, pending: false)
+end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :users, except: [:new, :create] do
     resources :posts
+    resources :messages
   end
   get '/registrations/new', to: 'registrations#new'
   post '/users', to: 'registrations#create'
