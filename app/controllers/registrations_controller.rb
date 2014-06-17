@@ -13,7 +13,7 @@ class RegistrationsController < ApplicationController
       password_confirmation: params[:user][:password_confirmation]
     )
     if @user.save
-      UserMailer.welcome_email(@user).deliver
+      WelcomeEmailJob.new.async.perform(@user)
       redirect_to root_path, notice: "Please check your email for a confirmation"
     else
       render 'registrations/new'
