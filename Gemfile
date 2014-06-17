@@ -13,6 +13,7 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'rmagick', '~> 2.13.2', require: false
 gem 'fog', '~> 1.22.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sucker_punch', '~> 1.0'
 
 gem 'rails_12factor', '~> 0.0.2', group: :production
 
