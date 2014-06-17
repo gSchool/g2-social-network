@@ -5,7 +5,7 @@ describe Post do
   describe 'post validations' do
 
     it 'the post cannot be blank' do
-      post = Post.create!(post_body: "Here is a post")
+      post = create_post(post_body: "Here is a post")
 
       post.post_body = ""
 

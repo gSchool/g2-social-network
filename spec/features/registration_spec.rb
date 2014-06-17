@@ -34,7 +34,7 @@ feature 'User can create an account' do
 
   context "Email confirmation link" do
     scenario "When a user clicks their unique confirmation link, they are confirmed" do
-      user = User.create(
+      user = create_user(
         first_name: 'Bebe',
         last_name: 'Peng',
         email: 'bebe2@example.com',

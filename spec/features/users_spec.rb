@@ -4,7 +4,7 @@ feature "Users interact with site" do
 
   before do
     ActionMailer::Base.deliveries.clear
-    @ellie = User.create!(
+    @ellie = create_user(
       first_name: 'Ellie',
       last_name: 'S',
       email: 'elli@example.com',
@@ -16,7 +16,7 @@ feature "Users interact with site" do
 
   scenario "user can view all users" do
 
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
@@ -25,7 +25,7 @@ feature "Users interact with site" do
       confirmation: true
     )
 
-    bebe = User.create!(
+    bebe = create_user(
       first_name: 'Bebe',
       last_name: 'Peng',
       email: 'bebe@example.com',
@@ -53,7 +53,7 @@ feature "Users interact with site" do
 
 
   scenario "user can request to add a friend and that friend can confirm" do
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
@@ -114,7 +114,7 @@ feature "Users interact with site" do
 
   scenario "user can remove a friend" do
 
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
@@ -149,12 +149,10 @@ feature "Users interact with site" do
   end
 
   scenario "user can see photos of all friends" do
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
-      password: 'hello12345',
-      password_confirmation: 'hello12345',
       confirmation: true
     )
 
@@ -175,7 +173,7 @@ feature "Users interact with site" do
   end
 
   scenario 'User can see friends in the left hand column and users they are not friends with on the right' do
-    bebe = User.create!(
+    bebe = create_user(
       first_name: 'Bebe',
       last_name: 'Peng',
       email: 'bebe@example.com',
@@ -184,7 +182,7 @@ feature "Users interact with site" do
       confirmation: true
     )
 
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
@@ -216,7 +214,7 @@ feature "Users interact with site" do
   end
 
   scenario 'a user can view their own posts and the posts of users they are friends with' do
-    seth = User.create!(
+    seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
@@ -225,7 +223,7 @@ feature "Users interact with site" do
       confirmation: true
     )
 
-    bebe = User.create!(
+    bebe = create_user(
       first_name: 'Bebe',
       last_name: 'Peng',
       email: 'bebe@example.com',
