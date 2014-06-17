@@ -21,6 +21,7 @@ To get this application running locally, you should be able to simply clone this
 + `bundle install`
 + `rake db:create`
 + `rake db:migrate`
++ `rake db:seed`
 + `rake spec`
 + `rails s`
 
