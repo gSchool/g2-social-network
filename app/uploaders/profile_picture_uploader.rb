@@ -2,10 +2,10 @@
 
 class ProfilePictureUploader < CarrierWave::Uploader::Base
 
-  process :resize_to_fit => [200, 200]
+  process :resize_to_fit => [160, 196]
 
   version :thumb do
-    process :resize_to_fill => [100, 100]
+    process :resize_to_fill => [80, 98]
   end
 
 

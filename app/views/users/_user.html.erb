@@ -1,7 +1,7 @@
 <li class="user">
 
   <div class="user_image">
-    <%= image_tag(UserHelper.profile_pic(user), :class => "profile_thumb") %>
+    <%= image_tag(UserHelper.thumb_pic(user), :class => "profile_thumb") %>
   </div>
 
   <div class="user_name"><%= user.first_name %> <%= user.last_name %></div>
