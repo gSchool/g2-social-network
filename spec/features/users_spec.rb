@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature "Users interact with site" do
+  include ActiveSupport::Testing::TimeHelpers
 
   before do
     ActionMailer::Base.deliveries.clear
@@ -238,4 +239,23 @@ feature "Users interact with site" do
     expect(page).to have_content 'cya later'
     expect(page).to_not have_content 'goodbye'
   end
+
+  scenario 'user\'s session expires after 1 day' do
+    seth = create_user(
+      first_name: 'Seth',
+      last_name: 'M',
+      email: 'seth@example.com',
+    )
+    visit '/'
+    click_on 'Login'
+    fill_in 'Email', with: 'seth@example.com'
+    fill_in 'Password', with: seth.password
+    click_button 'Login'
+    travel_to(1.day.from_now) do
+      visit '/'
+      expect(page).to have_content 'Login'
+      expect(page).to_not have_content 'seth@example.com'
+    end
+  end
+
 end
