@@ -1,4 +1,4 @@
-class Graph
+class SocialGraph
 
   def add_friendship(user_id, friend_id)
     if user_id.to_i > 0 && friend_id.to_i > 0
@@ -31,13 +31,6 @@ class Graph
   def friendship_pending?(user1_id, user2_id)
     friendship = find_friendship(user1_id, user2_id)
     !!friendship && friendship.pending?
-  end
-
-  def posts_for(user)
-    friends = friends_for(user)
-    user_posts = Post.where(user_id: user.id)
-    friend_posts = Post.where(user_id: friends.map { |friend| friend.id })
-    user_posts.concat(friend_posts)
   end
 
   private
