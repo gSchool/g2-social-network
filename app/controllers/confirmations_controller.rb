@@ -17,7 +17,7 @@ class ConfirmationsController < ApplicationController
   end
 
   def confirm_friendships
-    SocialGraph.new(current_user).confirm_friendship(params[:requestor_id])
+    SocialGraph.new(User.find(params[:friend_id])).confirm_friendship(params[:requestor_id])
     redirect_to users_path
   end
 
