@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create!(
+emily = User.create!(
   first_name: 'Emily',
   last_name: 'P',
   email: 'emily@example.com',
@@ -16,7 +16,7 @@ User.create!(
   confirmation: true
 )
 
-User.create!(
+bebe = User.create!(
   first_name: 'Bebe',
   last_name: 'P',
   email: 'bebe@example.com',
@@ -34,7 +34,7 @@ User.create!(
   confirmation: true
 )
 
-User.create!(
+thom = User.create!(
   first_name: 'Thom',
   last_name: 'F',
   email: 'thom@example.com',
@@ -42,3 +42,7 @@ User.create!(
   password_confirmation: 'password',
   confirmation: true
 )
+
+Friendship.create!(user_id: emily.id, friend_id: bebe.id, pending: false)
+Friendship.create!(user_id: emily.id, friend_id: thom.id, pending: false)
+Friendship.create!(user_id: bebe.id, friend_id: thom.id, pending: false)
