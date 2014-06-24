@@ -5,3 +5,7 @@ def log_user_in(user)
   fill_in 'Password', with: user.password
   click_button 'Login'
 end
+
+def number_of_emails_received
+  ActionMailer::Base.deliveries.length
+end

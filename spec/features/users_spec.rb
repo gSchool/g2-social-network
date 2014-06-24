@@ -4,7 +4,6 @@ feature "Users interact with site" do
   include ActiveSupport::Testing::TimeHelpers
 
   before do
-    ActionMailer::Base.deliveries.clear
     @ellie = create_user(
       first_name: 'Ellie',
       last_name: 'S',
@@ -41,6 +40,7 @@ feature "Users interact with site" do
 
 
   scenario "user can request to add a friend and that friend can confirm" do
+    ActionMailer::Base.deliveries.clear
     seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
@@ -54,13 +54,13 @@ feature "Users interact with site" do
       expect(page).to have_content 'Add Friend'
     end
 
-    expect(ActionMailer::Base.deliveries.length).to eq 0
+    expect(number_of_emails_received).to eq 0
 
     within '.non_friend_container' do
       page.first(:button, 'Add Friend').click
     end
 
-    expect(ActionMailer::Base.deliveries.length).to eq 1
+    expect(number_of_emails_received).to eq 1
 
     expect(page).to have_content 'Friendship request sent'
 
@@ -70,9 +70,8 @@ feature "Users interact with site" do
     end
 
     click_on 'Logout'
+
     log_user_in(seth)
-
-
     visit "/confirm-friendships/#{seth.id}/#{@ellie.id}"
 
     within('.friend_container') do
@@ -81,9 +80,8 @@ feature "Users interact with site" do
     end
 
     click_on 'Logout'
+
     log_user_in(@ellie)
-
-
     within('.friend_container') do
       expect(page).to have_text('Seth M')
       expect(page).to have_button('Unfriend')
@@ -109,6 +107,7 @@ feature "Users interact with site" do
       page.first(:button, 'Unfriend').click
     end
     expect(page).to have_content 'Friend removed'
+
     within '.non_friend_container' do
       expect(page).to have_content 'Seth M'
       expect(page).to have_content 'Add Friend'
@@ -135,37 +134,6 @@ feature "Users interact with site" do
 
     log_user_in(seth)
     expect(page).to have_css('img', visible: 'unicorn_cat.jpg')
-  end
-
-  scenario 'User can see friends in the left hand column and users they are not friends with on the right' do
-    bebe = create_user(
-      first_name: 'Bebe',
-      last_name: 'Peng',
-      email: 'bebe@example.com',
-    )
-
-    seth = create_user(
-      first_name: 'Seth',
-      last_name: 'M',
-      email: 'seth@example.com',
-    )
-
-    log_user_in(seth)
-
-    graph = Graph.new
-    graph.add_friendship(seth.id, bebe.id)
-    graph.confirm_friendship(seth.id, bebe.id)
-
-    visit page.current_path
-
-    within '.friend_container' do
-      expect(page).to have_content('Bebe Peng')
-    end
-
-    within '.non_friend_container' do
-      expect(page).to have_content('Ellie S')
-    end
-
   end
 
   scenario 'a user can view their own posts and the posts of users they are friends with' do
@@ -210,18 +178,12 @@ feature "Users interact with site" do
   end
 
   scenario 'user\'s session expires after 1 day' do
-    seth = create_user(
-      first_name: 'Seth',
-      last_name: 'M',
-      email: 'seth@example.com',
-    )
-    log_user_in(seth)
+    log_user_in(@ellie)
 
     travel_to(1.day.from_now) do
       visit '/'
       expect(page).to have_content 'Login'
-      expect(page).to_not have_content 'seth@example.com'
+      expect(page).to_not have_content 'elli@example.com'
     end
   end
-
 end
