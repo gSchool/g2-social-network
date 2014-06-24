@@ -3,12 +3,8 @@ require 'spec_helper'
 feature 'User can see their details on their profiles page' do
 
   before do
-    create_user(email: 'example@example.com', password: '12345678', confirmation: true)
-    visit root_path
-    click_on 'Login'
-    fill_in 'Email', with: 'example@example.com'
-    fill_in 'Password', with: '12345678'
-    click_button 'Login'
+    user = create_user(email: 'example@example.com', password: '12345678', confirmation: true)
+    log_user_in(user)
   end
 
   scenario 'User can see their profile details and add a profile picture' do
@@ -34,7 +30,7 @@ feature 'User can see their details on their profiles page' do
   end
 
   scenario 'User can post on their wall' do
-    create_user(first_name: 'Nate',
+    nate = create_user(first_name: 'Nate',
                 last_name: 'Burt',
                 email: 'nate@example.com',
                 password: 'hello12345',
@@ -45,10 +41,7 @@ feature 'User can see their details on their profiles page' do
     click_on 'Post'
     click_link 'Logout'
 
-    click_link 'Login'
-    fill_in 'Email', with: 'nate@example.com'
-    fill_in 'Password', with: 'hello12345'
-    click_button 'Login'
+    log_user_in(nate)
 
     click_link 'nate@example.com'
     fill_in 'post[post_body]', with: "This is Nate's post!"

@@ -14,11 +14,7 @@ feature 'private messaging' do
 
     create_friendship(seth, bebe)
 
-    visit '/'
-    click_on 'Login'
-    fill_in 'Email', with: seth.email
-    fill_in 'Password', with: seth.password
-    click_button 'Login'
+    log_user_in(seth)
 
     click_on 'messages'
     click_on 'Send a Message'

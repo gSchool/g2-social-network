@@ -14,23 +14,19 @@ feature "Users interact with site" do
 
   scenario "user can view all users" do
 
-    seth = create_user(
+    create_user(
       first_name: 'Seth',
       last_name: 'M',
       email: 'seth@example.com',
     )
 
-    bebe = create_user(
+    create_user(
       first_name: 'Bebe',
       last_name: 'Peng',
       email: 'bebe@example.com',
     )
 
-    visit '/'
-    click_on 'Login'
-    fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: @ellie.password
-    click_button 'Login'
+    log_user_in(@ellie)
 
     expect(page).to have_content "Bebe Peng"
     expect(page).to have_content "Add Friend"
@@ -50,11 +46,8 @@ feature "Users interact with site" do
       last_name: 'M',
       email: 'seth@example.com',
     )
-    visit '/'
-    click_on 'Login'
-    fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: @ellie.password
-    click_button 'Login'
+
+    log_user_in(@ellie)
 
     within('.non_friend_container') do
       expect(page).to have_content 'Seth M'
@@ -77,10 +70,8 @@ feature "Users interact with site" do
     end
 
     click_on 'Logout'
-    click_on 'Login'
-    fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: seth.password
-    click_button 'Login'
+    log_user_in(seth)
+
 
     visit "/confirm-friendships/#{seth.id}/#{@ellie.id}"
 
@@ -90,10 +81,8 @@ feature "Users interact with site" do
     end
 
     click_on 'Logout'
-    click_on 'Login'
-    fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: @ellie.password
-    click_button 'Login'
+    log_user_in(@ellie)
+
 
     within('.friend_container') do
       expect(page).to have_text('Seth M')
@@ -113,11 +102,7 @@ feature "Users interact with site" do
     graph.add_friendship(@ellie.id, seth.id)
     graph.confirm_friendship(@ellie.id, seth.id)
 
-    visit '/'
-    click_on 'Login'
-    fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: @ellie.password
-    click_button 'Login'
+    log_user_in(@ellie)
 
     within '.friend_container' do
       expect(page).to have_content 'Seth M'
@@ -141,19 +126,14 @@ feature "Users interact with site" do
       email: 'seth@example.com',
     )
 
-    visit '/'
-    click_on 'Login'
-    fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: @ellie.password
-    click_button 'Login'
+    log_user_in(@ellie)
+
     click_link 'elli@example.com'
     attach_file('Profile pic', Rails.root.join('spec/images/unicorn_cat.jpg'))
     click_on 'Upload Picture'
     click_on 'Logout'
-    click_on 'Login'
-    fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: seth.password
-    click_button 'Login'
+
+    log_user_in(seth)
     expect(page).to have_css('img', visible: 'unicorn_cat.jpg')
   end
 
@@ -170,11 +150,7 @@ feature "Users interact with site" do
       email: 'seth@example.com',
     )
 
-    visit '/'
-    click_on 'Login'
-    fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: seth.password
-    click_button 'Login'
+    log_user_in(seth)
 
     graph = Graph.new
     graph.add_friendship(seth.id, bebe.id)
@@ -209,29 +185,22 @@ feature "Users interact with site" do
     graph.add_friendship(seth.id, bebe.id)
     graph.confirm_friendship(seth.id, bebe.id)
 
-    visit '/'
-    click_on 'Login'
-    fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: seth.password
-    click_button 'Login'
+    log_user_in(seth)
+
     click_on 'seth@example.com'
     fill_in 'post[post_body]', with: 'hello'
     click_on 'Post'
     click_on 'Logout'
 
-    click_on 'Login'
-    fill_in 'Email', with: 'elli@example.com'
-    fill_in 'Password', with: @ellie.password
-    click_button 'Login'
+    log_user_in(@ellie)
+
     click_on 'elli@example.com'
     fill_in 'post[post_body]', with: 'goodbye'
     click_on 'Post'
     click_on 'Logout'
 
-    click_on 'Login'
-    fill_in 'Email', with: 'bebe@example.com'
-    fill_in 'Password', with: bebe.password
-    click_button 'Login'
+    log_user_in(bebe)
+
     click_on 'bebe@example.com'
     fill_in 'post[post_body]', with: 'cya later'
     click_on 'Post'
@@ -246,11 +215,8 @@ feature "Users interact with site" do
       last_name: 'M',
       email: 'seth@example.com',
     )
-    visit '/'
-    click_on 'Login'
-    fill_in 'Email', with: 'seth@example.com'
-    fill_in 'Password', with: seth.password
-    click_button 'Login'
+    log_user_in(seth)
+
     travel_to(1.day.from_now) do
       visit '/'
       expect(page).to have_content 'Login'

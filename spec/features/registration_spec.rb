@@ -40,10 +40,7 @@ feature 'User can create an account' do
         email: 'bebe2@example.com',
         confirmation: false
       )
-      visit '/login'
-      fill_in 'Email', with: 'bebe2@example.com'
-      fill_in 'Password', with: user.password
-      click_button 'Login'
+      log_user_in(user)
       expect(page).to have_content "Please check your email to confirm registration"
       click_link "Resend Confirmation Email"
       expect(page).to have_content "Email has been sent to #{user.email}. Please check your email to confirm"
