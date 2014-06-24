@@ -96,9 +96,9 @@ feature "Users interact with site" do
       email: 'seth@example.com',
     )
 
-    graph = SocialGraph.new
-    graph.add_friendship(@ellie.id, seth.id)
-    graph.confirm_friendship(@ellie.id, seth.id)
+    graph = SocialGraph.new(@ellie)
+    graph.add_friendship(seth.id)
+    graph.confirm_friendship(seth.id)
 
     log_user_in(@ellie)
 
@@ -149,9 +149,9 @@ feature "Users interact with site" do
       email: 'bebe@example.com',
     )
 
-    graph = SocialGraph.new
-    graph.add_friendship(seth.id, bebe.id)
-    graph.confirm_friendship(seth.id, bebe.id)
+    graph = SocialGraph.new(seth)
+    graph.add_friendship(bebe.id)
+    graph.confirm_friendship(bebe.id)
 
     log_user_in(seth)
 

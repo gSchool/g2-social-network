@@ -5,8 +5,8 @@ class UsersController < LoggedInController
   def index
     @users = User.all_except(session[:id])
     @current_user = current_user
-    @graph = SocialGraph.new
-    @list_of_friends = @graph.friends_for(@current_user)
+    @graph = SocialGraph.new(current_user)
+    @list_of_friends = @graph.friends_for
     @list_of_non_friends = @users - @list_of_friends
   end
 

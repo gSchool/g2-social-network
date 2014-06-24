@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
     @user = current_user
-    @friends = SocialGraph.new.friends_for(@user)
+    @friends = SocialGraph.new(@user).friends_for
   end
 
   def create

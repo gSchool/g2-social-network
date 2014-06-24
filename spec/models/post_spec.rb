@@ -14,29 +14,29 @@ describe Post do
   end
 
   it "can find posts for a user and their friends" do
-    @mike = create_user(email: 'mike@example.com')
-    @seth = create_user(email: 'seth@example.com')
-    @graph = SocialGraph.new
+    mike = create_user(email: 'mike@example.com')
+    seth = create_user(email: 'seth@example.com')
+    graph = SocialGraph.new(mike)
     created_at = Time.now
     updated_at = Time.now
 
     other_user = create_user(email: 'be@be.com')
-    @graph.add_friendship(@mike.id, @seth.id)
-    @graph.confirm_friendship(@mike.id, @seth.id)
-    post1 = create_post(other_user.id)
-    post2 = create_post(@mike.id, post_body: "I am Mike", created_at: created_at, updated_at: updated_at)
-    post3 = create_post(@seth.id, post_body: "I am Seth", created_at: created_at, updated_at: updated_at)
+    graph.add_friendship(seth.id)
+    graph.confirm_friendship(seth.id)
+    create_post(other_user.id)
+    post2 = create_post(mike.id, post_body: "I am Mike", created_at: created_at, updated_at: updated_at)
+    post3 = create_post(seth.id, post_body: "I am Seth", created_at: created_at, updated_at: updated_at)
 
-    expect(Post.posts_for(@seth)).to eq [
+    expect(Post.posts_for(seth)).to eq [
                                             new_post(
-                                              @mike.id,
+                                              mike.id,
                                               id: post3.id,
                                               post_body: post3.post_body,
                                               created_at: created_at,
                                               updated_at: updated_at
                                             ),
                                             new_post(
-                                              @mike.id,
+                                              mike.id,
                                               id: post2.id,
                                               post_body: post2.post_body,
                                               created_at: created_at,

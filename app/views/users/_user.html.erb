@@ -9,7 +9,7 @@
     <% if is_friend %>
       <%= render 'users/unfriend_form', user: user %>
     <% else %>
-      <% if @graph.friendship_pending?(@current_user.id, user.id) %>
+      <% if @graph.friendship_pending?(user.id) %>
         <p>Pending</p>
       <% else %>
         <%= render 'users/add_friend_form', user: user %>
