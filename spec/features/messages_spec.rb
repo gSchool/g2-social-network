@@ -78,4 +78,24 @@ feature 'private messaging' do
       expect(page).to have_content 'How are you?'
     end
   end
+
+  scenario 'a user must specify a friend to send a message to', js: true do
+    seth = create_user(
+      first_name: 'Seth',
+      last_name: 'M',
+      email: 'seth@example.com',
+    )
+
+    log_user_in(seth)
+
+    click_on 'messages'
+    click_on 'Send a Message'
+
+    fill_in 'Subject', with: 'Hello!'
+    fill_in 'Message', with: 'How are you?'
+    click_button 'Send'
+
+    expect(page).to have_content 'You must specify a friend to send a message to'
+    expect(page).to have_content 'Sent Messages'
+  end
 end

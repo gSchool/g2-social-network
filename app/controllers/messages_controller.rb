@@ -11,11 +11,15 @@ class MessagesController < ApplicationController
   end
 
   def create
-    Message.create!(:sender => current_user.id,
-                    :receiver => params[:message][:receiver],
-                    :subject => params[:message][:subject],
-                    :body => params[:message][:body])
-    redirect_to user_messages_path(current_user), notice: "Message successfully sent!"
+    message = Message.new(:sender => current_user.id,
+                          :receiver => params[:message][:receiver],
+                          :subject => params[:message][:subject],
+                          :body => params[:message][:body])
+    if message.save
+      redirect_to user_messages_path(current_user), notice: "Message successfully sent!"
+    else
+      redirect_to user_messages_path(current_user), notice: 'You must specify a friend to send a message to'
+    end
   end
 
 end
