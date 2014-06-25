@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def index
-    @user = current_user
-    @messages = Message.where(:sender => current_user.id)
+    @sent_messages = Message.where(:sender => current_user.id)
+    @received_messages = Message.where(:receiver => current_user.id)
   end
 
   def new

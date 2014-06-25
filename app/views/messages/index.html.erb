@@ -1,15 +1,27 @@
 <div class="messages-container">
-<p><%= link_to 'Send a Message', new_user_message_path(current_user) %></p>
+  <p><%= link_to 'Send a Message', new_user_message_path(current_user) %></p>
 
-<h2>Sent Messages:</h2>
+  <h2>My Messages</h2>
+
+  <h2>Received Messages:</h2>
 
   <div class="message_list">
-    <% @messages.each do |message| %>
-      <div>
-        <p>To: <%= full_name_of(message.receiver) %></p>
+    <% @received_messages.each do |message| %>
+      <p>
+        From: <%= full_name_of(message.sender) %><br/>
+        Subject: <%= message.subject %>
+      </p>
+    <% end %>
+  </div>
 
-        <p>Subject: <%= message.subject %></p>
-      </div>
+  <h2>Sent Messages:</h2>
+
+  <div class="message_list">
+    <% @sent_messages.each do |message| %>
+      <p>
+        To: <%= full_name_of(message.receiver) %><br/>
+        Subject: <%= message.subject %>
+      </p>
     <% end %>
   </div>
 

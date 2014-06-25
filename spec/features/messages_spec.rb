@@ -29,4 +29,42 @@ feature 'private messaging' do
     expect(page).to have_content "To: #{bebe.first_name} #{bebe.last_name}"
     expect(page).to have_content 'Subject: Hello!'
   end
+
+  scenario 'a user can see the messages they receive' do
+    seth = create_user(
+      first_name: 'Seth',
+      last_name: 'M',
+      email: 'seth@example.com',
+    )
+
+    bebe = create_user(
+      first_name: 'Bebe',
+      last_name: 'Peng',
+      email: 'bebe@example.com',
+    )
+
+    create_friendship(seth, bebe)
+
+    log_user_in(seth)
+
+    click_on 'messages'
+    click_on 'Send a Message'
+
+    fill_in 'Subject', with: 'Hello!'
+    fill_in 'Message', with: 'How are you?'
+    select "#{bebe.first_name} #{bebe.last_name}"
+    click_button 'Send'
+
+    expect(page).to have_content 'Message successfully sent!'
+
+    click_link 'Logout'
+
+    log_user_in(bebe)
+
+    click_on 'messages'
+
+    expect(page).to have_content 'Received Messages'
+    expect(page).to have_content "From: #{seth.first_name} #{seth.last_name}"
+    expect(page).to have_content 'Subject: Hello!'
+  end
 end
