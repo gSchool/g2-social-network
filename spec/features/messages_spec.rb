@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 feature 'private messaging' do
   scenario 'a user sends a message to a friend' do
     seth = create_user(
@@ -30,7 +32,7 @@ feature 'private messaging' do
     expect(page).to have_content 'Subject: Hello!'
   end
 
-  scenario 'a user can see the messages they receive' do
+  scenario 'a user can see the messages they receive', js: true do
     seth = create_user(
       first_name: 'Seth',
       last_name: 'M',
@@ -50,9 +52,9 @@ feature 'private messaging' do
     click_on 'messages'
     click_on 'Send a Message'
 
+    select "#{bebe.first_name} #{bebe.last_name}"
     fill_in 'Subject', with: 'Hello!'
     fill_in 'Message', with: 'How are you?'
-    select "#{bebe.first_name} #{bebe.last_name}"
     click_button 'Send'
 
     expect(page).to have_content 'Message successfully sent!'
@@ -64,7 +66,16 @@ feature 'private messaging' do
     click_on 'messages'
 
     expect(page).to have_content 'Received Messages'
+    expect(page).to have_css("img[src*='small_placeholder']")
     expect(page).to have_content "From: #{seth.first_name} #{seth.last_name}"
     expect(page).to have_content 'Subject: Hello!'
+
+    expect(page).to_not have_content 'How are you?'
+
+    click_link 'show-body'
+
+    within 'div#message-body' do
+      expect(page).to have_content 'How are you?'
+    end
   end
 end

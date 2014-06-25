@@ -14,6 +14,7 @@ gem 'rmagick', '~> 2.13.2', require: false
 gem 'fog', '~> 1.22.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sucker_punch', '~> 1.0'
+gem 'ejs', '~> 1.1.1'
 
 gem 'rails_12factor', '~> 0.0.2', group: :production
 
@@ -24,6 +25,7 @@ group :test, :development do
 end
 
 group :test do
+  gem 'selenium-webdriver', '~> 2.41.0'
   gem 'database_cleaner', '~> 1.3.0'
 end
 
