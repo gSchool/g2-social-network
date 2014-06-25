@@ -1,3 +1,3 @@
 class Message < ActiveRecord::Base
-  validates :receiver, presence: true
+  validates :receiver_id, presence: true
 end

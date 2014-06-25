@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def index
-    @sent_messages = Message.where(:sender => current_user.id)
-    @received_messages = Message.where(:receiver => current_user.id)
+    @sent_messages = Message.where(:sender_id => current_user.id)
+    @received_messages = Message.where(:receiver_id => current_user.id)
   end
 
   def new
@@ -11,8 +11,8 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message = Message.new(:sender => current_user.id,
-                          :receiver => params[:message][:receiver],
+    message = Message.new(:sender_id => current_user.id,
+                          :receiver_id => params[:message][:receiver_id],
                           :subject => params[:message][:subject],
                           :body => params[:message][:body])
     if message.save

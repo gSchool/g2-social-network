@@ -1,8 +1,8 @@
 function MessageView(messageData, $messageDiv) {
   this.senderName = messageData.sender_name;
-  this.senderId = messageData.sender;
+  this.senderId = messageData.sender_id;
   this.receiverName = messageData.receiver_name;
-  this.receiverId = messageData.receiver;
+  this.receiverId = messageData.receiver_id;
   this.subject = messageData.subject;
   this.body = messageData.body;
   this.senderImagePath = messageData.sender_image_path;
