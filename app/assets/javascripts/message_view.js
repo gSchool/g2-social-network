@@ -5,7 +5,7 @@ function MessageView(messageData, $messageDiv) {
   this.receiverId = messageData.receiver;
   this.subject = messageData.subject;
   this.body = messageData.body;
-  this.imagePath = messageData.image_path;
+  this.senderImagePath = messageData.sender_image_path;
   this.$messageDiv = $messageDiv;
 
   $messageDiv.one('click', '[data-behavior=show-body]', this.showBody.bind(this));

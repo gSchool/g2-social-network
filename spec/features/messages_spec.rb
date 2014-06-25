@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'private messaging' do
-  scenario 'a user sends a message to a friend' do
+  scenario 'a user sends a message to a friend', js: true do
     seth = create_user(
       first_name: 'Seth',
       last_name: 'M',

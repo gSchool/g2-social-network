@@ -6,39 +6,40 @@
   <h2>Received Messages:</h2>
 
   <div class="message_list" data-container="all-received">
-
   </div>
 
   <h2>Sent Messages:</h2>
 
-  <div class="message_list">
-    <% @sent_messages.each do |message| %>
-      <p>
-        To: <%= full_name_of(message.receiver) %><br/>
-        Subject: <%= message.subject %>
-      </p>
-    <% end %>
+  <div class="message_list" data-container="all-sent">
   </div>
 
 </div>
 
 <script>
-  var messagesJSON = <%= raw messages_json(@received_messages) %>;
-  //code that gets passed an array of messages
-  //that code creates instances of the message function (sep file that contains the message function)
-  //that code will append message divs to div data-display="received"
+  var receivedMessagesJSON = <%= raw messages_json(@received_messages) %>;
+  var sentMessagesJSON = <%= raw messages_json(@sent_messages) %>;
+
   function displayMessages() {
-    $.each(messagesJSON, function () {
+    $.each(receivedMessagesJSON, function () {
       var $messageDiv = $("<div class='received-message' data-display='received'>");
-      var $html = $(JST['templates/show'](this));
+      var $html = $(JST['templates/show_received'](this));
       $messageDiv.append($html);
 
       new MessageView(this, $messageDiv);
 
       $("[data-container=all-received]").append($messageDiv);
     })
-  }
 
+    $.each(sentMessagesJSON, function () {
+      var $messageDiv = $("<div class='sent-message' data-display='sent'>");
+      var $html = $(JST['templates/show_sent'](this));
+      $messageDiv.append($html);
+
+      new MessageView(this, $messageDiv);
+
+      $("[data-container=all-sent]").append($messageDiv);
+    })
+  }
 
   $(document).ready(displayMessages());
 </script>
