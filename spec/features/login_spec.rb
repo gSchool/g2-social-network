@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 feature 'User login' do
+  include ActiveSupport::Testing::TimeHelpers
 
   before :each do
     @bebe = create_user(
@@ -40,6 +41,16 @@ feature 'User login' do
     fill_in 'Password', with: 'hello12'
     click_button 'Login'
     expect(page).to have_content "Invalid email or password"
+  end
+
+  scenario 'user\'s session expires after 1 day' do
+    log_user_in(@bebe)
+
+    travel_to(1.day.from_now) do
+      visit '/'
+      expect(page).to have_content 'Login'
+      expect(page).to_not have_content 'bebe@example.com'
+    end
   end
 
 end

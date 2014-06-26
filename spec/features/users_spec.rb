@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 feature "Users interact with site" do
-  include ActiveSupport::Testing::TimeHelpers
 
   before do
     @ellie = create_user(
@@ -175,15 +174,5 @@ feature "Users interact with site" do
     expect(page).to have_content 'hello'
     expect(page).to have_content 'cya later'
     expect(page).to_not have_content 'goodbye'
-  end
-
-  scenario 'user\'s session expires after 1 day' do
-    log_user_in(@ellie)
-
-    travel_to(1.day.from_now) do
-      visit '/'
-      expect(page).to have_content 'Login'
-      expect(page).to_not have_content 'elli@example.com'
-    end
   end
 end
