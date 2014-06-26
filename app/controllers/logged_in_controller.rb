@@ -1,4 +1,4 @@
-class LoggedInController < ApplicationController
+class LoggedInController < SecureController
 
   before_action :is_user_logged_in?
 

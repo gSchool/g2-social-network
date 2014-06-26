@@ -43,11 +43,26 @@ feature 'User login' do
     expect(page).to have_content "Invalid email or password"
   end
 
-  scenario 'user\'s session expires after 1 day' do
+  scenario "user's session expires after 1 day" do
     log_user_in(@bebe)
 
     travel_to(1.day.from_now) do
       visit '/'
+
+      expect(current_path).to eq '/'
+      expect(page).to have_content 'Your session has expired'
+      expect(page).to have_content 'Login'
+      expect(page).to_not have_content 'bebe@example.com'
+
+    end
+
+    log_user_in(@bebe)
+
+    travel_to(1.day.from_now) do
+      visit '/users'
+
+      expect(current_path).to eq '/'
+      expect(page).to have_content 'Your session has expired'
       expect(page).to have_content 'Login'
       expect(page).to_not have_content 'bebe@example.com'
     end

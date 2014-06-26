@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   def log_user_in(user)
     session[:id] = user.id
+    session[:last_login] = Time.now
   end
 
   def full_name_of(user_id)
