@@ -1,16 +1,46 @@
 <div class="messages-container">
-<p><%= link_to 'Send a Message', new_user_message_path(current_user) %></p>
+  <p><%= link_to 'Send a Message', new_user_message_path(current_user) %></p>
 
-<h2>Sent Messages:</h2>
+  <h2>My Messages</h2>
 
-  <div class="message_list">
-    <% @messages.each do |message| %>
-      <div>
-        <p>To: <%= full_name_of(message.receiver) %></p>
+  <h2>Received Messages:</h2>
 
-        <p>Subject: <%= message.subject %></p>
-      </div>
-    <% end %>
+  <div class="message_list" data-container="all-received">
+  </div>
+
+  <h2>Sent Messages:</h2>
+
+  <div class="message_list" data-container="all-sent">
   </div>
 
 </div>
+
+<script>
+  var receivedMessagesJSON = <%= raw messages_json(@received_messages) %>;
+  var sentMessagesJSON = <%= raw messages_json(@sent_messages) %>;
+
+  function displayMessages() {
+    $.each(receivedMessagesJSON, function () {
+      var $messageDiv = $("<div class='received-message' data-display='received'>");
+      var $html = $(JST['templates/show_received'](this));
+      $messageDiv.append($html);
+
+      new MessageView(this, $messageDiv);
+
+      $("[data-container=all-received]").append($messageDiv);
+    })
+
+    $.each(sentMessagesJSON, function () {
+      var $messageDiv = $("<div class='sent-message' data-display='sent'>");
+      var $html = $(JST['templates/show_sent'](this));
+      $messageDiv.append($html);
+
+      new MessageView(this, $messageDiv);
+
+      $("[data-container=all-sent]").append($messageDiv);
+    })
+  }
+
+  $(document).ready(displayMessages());
+</script>
+

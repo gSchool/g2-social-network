@@ -8,6 +8,10 @@ class ProfilePictureUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [80, 98]
   end
 
+  version :small_thumb do
+    process :resize_to_fill => [50, 50]
+  end
+
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
